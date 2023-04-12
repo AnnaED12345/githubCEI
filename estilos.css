@@ -1,0 +1,55 @@
+p.parrafo2 {
+    background-color: aqua;
+    font-size: 20px;
+}
+
+h1 {
+    color: green;
+}
+
+p {
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+} 
+
+.destacado {
+    background-color: yellow;
+    font-weight: 900;
+}
+
+#encabezado-principal {
+    font-size: 32px;
+    color: blue;
+}
+
+ol li {
+    font-style: oblique;
+}
+
+ul > li {
+    list-style: square;
+}
+
+a[href^="https://"] {
+    color: orange;
+}
+
+p {
+    color: blue;
+}
+
+.text {
+    color:red;
+}
+
+div .text {
+    color:green;
+}
+
+
+
+
+
+
+
+
