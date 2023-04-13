@@ -1,4 +1,4 @@
-let nombre = prompt("¿Cómo te llamas?")
+/*let nombre = prompt("¿Cómo te llamas?")
 console.log ( "Hola, " + nombre)
 
 function operacionesMatematicas (x, y) {
@@ -69,3 +69,10 @@ if (password.lenght >= 8 && password.lenght <= 16) {
 } else {
     console.log("Tu contraseña no es valida")
 }
+/* 
+
+
+/* EJERCICIOS JS GETELEMENT*/
+
+document.getElementById("parrafo1")
+
