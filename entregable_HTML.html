@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>perfil personal </title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="entregable_CSS.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Sofía</h1>
+        </header>
+
+        <section class="contenedor-imagenes">
+            <img id="fotoperfil" src="https://images.pexels.com/photos/7275385/pexels-photo-7275385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="foto de perfil">
+
+           <!-- <img id="fotodondo" src="https://images.pexels.com/photos/7078415/pexels-photo-7078415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="foto de fondo">-->
+        </section>
+     
+        <section class="descripcion">
+            <p id="descripcion1"> Mi nombre es <b>Sofía</b>, tengo <b>28 años</b> y me considero una persona muy activa y dinámica. Me encanta practicar deportes y hacer ejercicio, especialmente correr y nadar. Soy una persona muy sociable y disfruto de tener conversaciones interesantes y conocer gente nueva. Trabajo como <em>diseñadora gráfica en una agencia creativa</em>, lo cual me permite ejercer mi creatividad y habilidades artísticas en mi día a día.
+            </p>
+        
+            <p id="descripcion2">En mi tiempo libre, disfruto de leer novelas y explorar nuevos lugares en mi ciudad. Me considero una persona muy organizada y siempre me gusta tener mi vida bajo control. Aunque soy una persona muy independiente, valoro mucho el tiempo que paso con mis seres queridos, especialmente con mi familia y mis amigos más cercanos.
+            </p>
+        </section>
+
+        <section class="habilidades">
+            <h2>Habilidades</h2>
+            <ul>
+                <li>Creativa</li>
+                <li>Resolutiva</li>
+                <li>Determinada</li>
+                <li>Humilde</li>
+                <li>Versátil</li>
+            </ul>
+        </section>
+
+        <section class="Formulario">
+            <h2 id="formulario">Formulario de contacto</h2>
+            <form action=""></form>
+            <div id="caja_nombre">
+                <label for="Nombre">Nombre:</label>
+                <input type="text" name="Nombre" id="Nombre">
+            </div>
+    
+            <div id="caja_correo">
+                <label for="Email">Email:</label>
+                <input type="text" name="Email" id="Email">
+            </div>
+    
+            <div id="caja_correo">
+                <label for="Asunto">Asunto:</label>
+                <select name="Asunto" id="Asunto">
+                    <!--para que no te aparezca ninguna opción establecida debemos agregar una opcion "disabled selected"-->
+                    <option value="" disabled selected></option> 
+                    <option value="opcion1">Información</option>
+                    <option value="opcion2">Sugerencias</option>
+                    <option value="opcion3">Consultas</option>
+    
+                </select>
+            </div>
+            <div id="caja_correo">
+                <label for="Mensaje">Mensaje</label>
+                <input type="text" name="Mensaje" id="Mensaje">
+            </div>
+        </section>
+
+        <Footer>
+            <a href="https://www.instagram.com/">Instagram</a>
+            <a href="mailto:sofia@alumnos.cei.es">Correo electrónico</a>
+            <a href="tel:+34 664 554 342">Teléfono</a>
+        </Footer>
+
+    </body>
