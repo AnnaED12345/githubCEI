@@ -151,26 +151,47 @@ function multiplicar (numero) {
     }
 }
 
-multiplicar (numero)
+multiplicar (numero);
 
 /*EJERCICIO 2 BUCLES: Números impares*/
-/*funcion impar{
-    dentro, let es i; queremos que pare hasta 10; ++{
-        entonces, si (i dividido por 2 no da 0, es decir, si es impar){
-            que la consola lo muestre
+    let numerosImpares = 0;
+
+    for (let numeroActual = 0; numerosImpares < 10; numeroActual++) {
+            if (numeroActual % 2 === 1) {
+                console.log(numeroActual);
+                numerosImpares++;
+            }
         }
-    }*/
-function impar () {
-    for (let i = 1; i <= 10; i++){
-        if (i % 2 == 1) {
-            console.log (i);
-        }
+
+/*EJERCICIO 3 BUCLES: Secuencia Fibonacci */
+let penultimo = 0;
+let ultimo = 1;
+
+console.log(penultimo);
+console.log(ultimo);
+
+for (let numeroSecuencial = 2; numeroSecuencial < 20; numeroSecuencial++) {
+    let suma = penultimo + ultimo; {
+        console.log (suma);
+
+        penultimo = ultimo; 
+        ultimo = suma; 
     }
 }
 
-impar ();
+/*EJERCICIO 4 BUCLES: Adivina el numero */
+/*const numeroAleatorio = Math.ceil((Math.random() * 100));
+let acierta = false;
 
-/*EJERCICIO 3 BUCLES: Secuencia Fibonacci */
+do {
+    const numeroIntroducido = Number (prompt("Adivina el número"));
+    if (numeroIntroducido === numeroAleatorio) {
+        console.log("¡Has acertado!")
+        acierta = true;
+    } else if (numeroIntroducido > numeroAleatorio) {
+        console.log("Incorrecto. El número que tienes que adivinar es menor");
+    } else {
+        console.log("Incorrecto. El número que tienes que acertar es mayor");
+    }
+} while (!acierta);*/
 
-
-/*EJERCICIO 4 BUCLES: Secuencia Fibonacci */

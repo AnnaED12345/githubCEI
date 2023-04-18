@@ -155,4 +155,16 @@ const resultado = inicio.concat(4, 5, 6).concat(fin);
 console.log(resultado);
 console.log(numbers6);
 
+/*SubArray 7: Reduce el array*/
+const integers = [11, 22, 33, 44, 55, 66, 77, 88, 99];
+const reducido = integers.slice(0, 5);
+console.log(reducido);
 
+/*SubArray 8: Frutas*/
+const words1 = ["apple", "banana", "cherry", "date", "fig", "grape"];
+const tresFrutas = words1.slice(1,3);
+console.log(words1);
+console.log(tresFrutas);
+const frutasEliminadas = words1.splice(1, 3);
+console.log(frutasEliminadas);
+console.log(words1);
