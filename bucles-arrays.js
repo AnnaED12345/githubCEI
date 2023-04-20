@@ -409,6 +409,173 @@ const cart = [
     const total = cart.reduce(sumar, 0);
     console.log("El precio total del carrito es ${tota}");
 
+/* DESESTRUCTURACIÓN DE ARRAYS Y OBJETOS
+Ejericio 1: Desestructura el array para obtener las tres primeras frutas 
+y guardarlas en variables individuales.
+*/
+const fruits = ["apple", "banana", "cherry", "orange", "grape"];
+const [fruta1, fruta2, fruta3] = fruits;
+
+console.log(fruta1);
+console.log(fruta2);
+console.log(fruta3);
+
+/* DESESTRUCTURACIÓN DE ARRAYS Y OBJETOS
+Ejericio 1: Desestructura el objeto para obtener el firstName, lastName 
+y age. Crea una variable llamada name que contenga el nombre completo.
+*/
+
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30,
+    city: "New York",
+    };
+
+const {firstName, lastName, age} = person;
+console.log(firstName);
+console.log(lastName);
+console.log(age);
+
+const nameFruits = (firstName + " " + lastName);
+console.log(nameFruits);
+
+/*También se puede hacer con:
+const name = "Me llamo: ${fisrtName} ${lastName} ${age}" */
 
 
 
+/* DESESTRUCTURACIÓN DE ARRAYS Y OBJETOS
+Ejercicio 3: Desestructura el objeto data para obtener el nombre y el 
+precio del primer producto. 
+*/
+
+const data = {
+    results: [
+        {
+            id: 1,
+            name: "Product 1",
+            price: 100,
+        },
+        {
+            id: 2,
+            name: "Product 2",
+            price: 200,
+        },
+    ],
+};
+
+const { results } = data;
+const [product1] = results; 
+const {name, price} = product1; /* no hace falta coma, por que en un objeto
+no hay posición*/
+
+console.log("El precio del " + name + " es " + price);
+
+
+
+/* DESESTRUCTURACIÓN DE ARRAYS Y OBJETOS
+Ejercicio 4: Utiliza el Spread Operator para crear un nuevo array que 
+combine los elementos de array1 y array2.
+*/
+
+const array01 = [1, 2, 3];
+const array02 = [4, 5, 6];
+
+const arrayCombinado = [...array01, ...array02]; //-> [ARRAY] // {OBJETOS}
+console.log("Array con spread operator " + arrayCombinado);
+
+/* DESESTRUCTURACIÓN DE ARRAYS Y OBJETOS
+Ejercicio 5: Utiliza el Spread Operator para crear un nuevo objeto que 
+combine las propiedades de obj1 y obj2.
+*/
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+
+const objCombinado = {...obj1, ...obj2}; //-> [ARRAY] // {OBJETOS}
+console.log("Objeto con spread operator", objCombinado);
+/*Atención con  el console.log --> se inserta con , por que con + o con ${}
+ nos puede dar error al convertir un objeto por que lo que hace es
+ convertirlo en una cadena de texto
+ */
+
+
+/* DESESTRUCTURACIÓN DE ARRAYS Y OBJETOS
+Ejercicio 6: Utiliza el Spread Operator para clonar el objeto user y 
+actualizar la propiedad location a "Londres".
+*/
+
+const user = {
+    name: "Alice",
+    age: 25,
+    location: "París",
+};
+
+const updObject = {...user, location:"Londres"};
+console.log(updObject);
+console.log(user);
+
+/* TIMER
+Ejercicio 1: Crea una función llamada simpleTimer que recibe un número de 
+segundos como argumento. La función debe imprimir en consola "Tiempo 
+cumplido" después de esperar los segundos indicados.
+*/
+
+/*function simpleTimer (segundos){
+    setTimeout(() => {
+        console.log("Tiempo clumplido");
+    }, segundos * 1000)
+}
+
+simpleTimer(3);*/
+
+
+/* TIMER
+Ejercicio 2: Crea una función llamada stopwatch que recibe un número 
+duration en segundos. La función debe imprimir en consola un contador que 
+va desde 0 hasta duration.
+*/
+
+/*function stopwatch (duration){
+    let contador = 0;
+    console.log(contador);
+
+    const callback = () => {
+        console.log(contador);
+       
+
+        if (contador === duration) {
+            clearInterval(intervalID);
+        }
+
+        contador++;
+    };
+
+    const intervalID = setInterval(callback, 1000);
+}
+
+stopwatch(10); */
+
+/* TIMER
+Ejercicio 3: Crea una función llamada messageInterval que recibe un array 
+de strings messages y un número interval en milisegundos. La función debe 
+imprimir cada mensaje en consola con un intervalo de tiempo igual a 
+interval entre cada mensaje.
+*/
+
+function messageInterval (messages, interval){
+    let puntero = 0;
+
+    const intervalID = setInterval(() => {
+        if (puntero >= messages.length) {
+            clearInterval (intervalID);
+        }
+
+        else {console.log(messages[puntero]);
+        puntero++
+        }
+    }, interval);
+}
+
+console.log(["unos", "dos", "tres"], 2000);
