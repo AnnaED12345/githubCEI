@@ -1,3 +1,9 @@
+/*
+ARRAYS Y SUBARRAYS
+ARROW FUNCTIONS
+DESESTRUCTURACIÓN DE ARRAYS
+TIMERS */
+
 
 /* bucle multiplicación
 const num = prompt ("Introduce un número");

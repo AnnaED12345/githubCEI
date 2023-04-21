@@ -5,14 +5,67 @@
         <title>ejercicios html</title>
         <meta charset="UTF-8"/>
         <link rel="stylesheet" href="">
-        <script src="./API_DOM.js"></script>
 
     </head>
 
     <body>
-        <p id="parrafo1">Este es el primer parrafo</p>
+        <h1>Nombre</h1>
 
- 
+        <p id="parrafo1">Este es el primer parrafo</p>
+        
+        <ul>
+            <li class="destacado">uno</li>
+            <li>dos</li>
+            <li class="destacado">tres</li> 
+            <li>cuatro</li>
+            <li class="destacado">cinco</li>
+        </ul>
+
+        <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JS</li>
+        </ol>
+
+        <div>
+            <a href="https://github.com">Github</a> 
+            <a href="ejercicios.html">ejercicios HTML</a>
+            <a href="mailto:aniemildimitrova@alumnos.cei.es">mail</a>
+            <a href="tel:+34665445664">tel</a>
+        </div>
+
+        <p class="parrafo2">Lorem <b>ipsum</b>  dolor <em>sit amet consectetur</em>  adipisicing elit. <u>Recusandae eaque accusamus rerum</u> provident voluptatibus officia facere esse soluta reiciendis tenetur.</p>
+        
+        <form action="">
+            <div>
+                <label for="Nombre">Nombre:</label>
+                <input type="text" name="Nombre" id="Nombre">
+            </div>
+
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" name="Email" id="Email">
+            </div>
+
+            <div>
+                <label for="pais">País</label>
+                <select name="pais" id="pais">
+                    <option>España</option>
+                    <option>Francia</option>
+                    <option>Andorra</option>
+                </select>
+            </div>
+
+            <input type="submit">  
+        </form>
+
+        <div id="container">
+            <p class="text">Esto es un párrafo dentro de un div.</p>
+        </div>
+        <p class="text">Esto es un párrafo dentro de un div.</p>
+
+        <script src="./API_DOM.js"></script>
+        
     </body>
     
 </html>
