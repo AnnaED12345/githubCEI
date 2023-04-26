@@ -1,3 +1,5 @@
+// ORIENTADO A OBJETOS 
+
 /* JS orientado a objetos
 1. Crea una función constructora Car que tome tres argumentos: make, model y year. 
 La función constructora debe almacenar estos valores como propiedades del objeto.
