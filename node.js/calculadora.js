@@ -1,17 +1,17 @@
 function suma (a, b) {
-    const suma = a + b;
+    return a + b;
 }
 
 function resta (a, b) {
-    const resta = a - b;
+    return a - b;
 }
 
 function multiplicacion (a, b) {
-    const multiplicacion = a * b;
+    return a * b;
 }
 
 function division (a, b) {
-    const division = a / b;
+    return a / b;
 }
 
 module.exports = {

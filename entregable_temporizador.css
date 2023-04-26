@@ -1,10 +1,11 @@
 body {
-    /* background-image: url(https://images.pexels.com/photos/2847648/pexels-photo-2847648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); */
-    /* background-image: url(https://images.pexels.com/photos/6985202/pexels-photo-6985202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); */
-    /* background-image: url(https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80); */
-    background-color: #9aa7a6;
-    /* background-repeat: no-repeat;
-    background-size: cover;*/
+    background-image: url(https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    /* background-color: #9ab9bb; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
 } 
 
  h1 {
@@ -15,6 +16,7 @@ body {
     font-weight: 900;
     font-size: 50px;
     color: white;
+
  }
 
  h2 {
@@ -24,7 +26,7 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
     font-weight: 100;
-    margin-top: -2%;
+    margin-top: 3%;
     color: white;
 
  }
@@ -51,7 +53,7 @@ body {
     background-color: transparent;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
-    width: 6%;
+    width: 9%;
     height: 40px;
     margin-top: 2%;
     text-align: center;
@@ -61,7 +63,9 @@ body {
 form#boton_enviar {
     display: flex;
     justify-content: center;
+    margin-top: 3%;
 }
+
 
 input#enviar {
     color: white;
@@ -76,12 +80,16 @@ input#enviar {
     border-radius: 200px;
 }
 
+/* input#enviar:hover {
+   background-color: rgb(67, 104, 117);
+ } */
+
 #contador {
     /* background-color:#DEC6F4; */
     display: flex;
     justify-content: center;
     margin: 5% auto 0;
-    margin-top: 2%;
+    margin-top: 0%;
     height: 300px;
     width: 40%;
     border-radius: 100px;

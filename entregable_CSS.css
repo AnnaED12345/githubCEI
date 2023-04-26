@@ -15,13 +15,11 @@ h1 {
 }
 
 section.contenedor-imagenes {
-    width: 40%;
-    position: relative;
     float: right;
 }
 
 section.descripcion {
-    width: 40%;
+    width: 50%;
     padding-left: 10%;
     padding-top: 10%;
     padding-bottom: 2%;
@@ -40,7 +38,7 @@ section.habilidades {
 }
 
 h2 {
-    color: #D2E8E3;
+    color: #89b7ac;
 }
 
 h2#formulario {
@@ -49,10 +47,9 @@ h2#formulario {
 
 section.Formulario {
     background-color: #D8B08C;
-    width: 100;
-    padding-top: 2%;
-    padding-bottom: 5%;
-    padding-left: 10%;
+    display: flex;
+    justify-content: center;
+    height: 30vh;
     color: #2C3532;
 
 }
