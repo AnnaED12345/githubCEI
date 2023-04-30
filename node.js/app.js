@@ -1,3 +1,4 @@
+
 /* Node.js
 ejercicio 1. 
 
@@ -12,7 +13,9 @@ multiplicación y división de 2 números = ./calculadora.js.
 - division(10, 5)
 - Imprime los resultados en la consola. */
 
-/* const calculadora = require ('./calculadora'); 
+    /*SOLUCIÓN:
+
+const calculadora = require ('./calculadora'); 
 
 console.log(calculadora.suma(10, 5));
 console.log(calculadora.resta(10, 5));
@@ -20,94 +23,128 @@ console.log(calculadora.multiplicacion(10, 5));
 console.log(calculadora.division(10, 5)); */
 
 
-/* NodeList.js
-sistema de ficheros 
-//REPASAR CLASE Y RECTIFICAR EJERCICIOS: 
+    /* NodeList.js
+SISTEMA DE FICHEROS
 
 1: Crea un archivo llamado "app.js" e importa el módulo 'fs' utilizando require().
  */
 
-/* const fs = require ('fs');
- */
+// const fs = require ('fs');
+ 
 /* 2. Utiliza el método fs.mkdir() para crear un directorio llamado "prueba".
  */
 
 //"prueba" = te crea la carpeta en el directorio en el que estas, es decir en /nodes.js
 
-/* fs.mkdir("prueba", (error) => {
-    if (error) {
-        console.error("Error al crear el directorio", error);
-    } else {
-        console.log("Directorio creado exitosamente");
-    }
-}); */
+// fs.mkdir("prueba", (error) => {
+//     if (error) {
+//         console.log("Error al crear el directorio", error);
+//     } else {
+//         console.log("Directorio creado exitosamente");
+//     }
+// }); 
+
+/*las siguientes carpetas se pueden trabajar dentro del else directamente por que ahí nos aseguramos 
+de que el archivo se cree una vez creada la carpeta (en el eslse). Si no, al final también vemos como 
+hacerlo con funciones.
+
 
 /* 3. Utiliza el método fs.writeFile() para crear un archivo llamado "texto.txt" dentro del directorio
 "prueba". Escribe "Hello, World!" como contenido del archivo. */
 
-/* fs.writeFile ("./prueba/texto.txt", "Hello, World!", (error) => {
-    if (error) {
-        console.error("Error al escribir el archivo", error);
-    } else {
-        console.log("Archivo creado exitosamente")
-    }
-});  */
+//  fs.writeFile ("./prueba/texto.txt", "Hello, World!", (error) => {
+//     if (error) {
+//         console.error("Error al escribir el archivo", error);
+//     } else {
+//         console.log("Archivo creado exitosamente")
+//     }
+// });  
 
 /* 4. Utiliza el método fs.readdir() para leer el contenido del directorio "prueba" e imprimir en la consola
 los nombres de los archivos que contiene. */
 
-/* fs.readdir("prueba", (error, ficheros) => {
-    if (error) {
-        console.error("Error al escribir el archivo", error);
-    } else {
-        console.log(ficheros);
-    }
-}); */
+//  fs.readdir("prueba", (error, ficheros) => {
+//     if (error) {
+//         console.error("Error al escribir el archivo", error);
+//     } else {
+//         console.log(ficheros);
+//     }
+// }); 
 
 /* 5. Utiliza el método fs.readFile() para leer el contenido del archivo "texto.txt" e imprimirlo en la
 consola. */
 
-/* fs.readFile ("./prueba/texto.txt", "utf-8", (error, data) => {
-    if (error) {
-        console.error("Error al escribir el archivo", error);
-    } else {
-        console.log(data);
-    }
-});  */
+// fs.readFile ("./prueba/texto.txt", "utf-8", (error, data) => {
+//     if (error) {
+//         console.error("Error al escribir el archivo", error);
+//     } else {
+//         console.log(data);
+//     }
+// });  
 
 /* 6. Utiliza el método fs.rename() para cambiar el nombre del archivo "texto.txt" a
 "texto_renombrado.txt". */
 
-/* fs.rename("./prueba/texto.txt", "./prueba/texto_renombrado.txt", (error) => {
-    if (error) {
-        console.error(error);
-        } else {
-        console.log('El archivo ha sido renombrado correctamente.');
-        }
-}); */
+// fs.rename("./prueba/texto.txt", "./prueba/texto_renombrado.txt", (error) => {
+//     if (error) {
+//         console.error(error);
+//         } else {
+//         console.log('El archivo ha sido renombrado correctamente.');
+//         }
+// }); 
+
 
 /* 7. Utiliza el método fs.unlink() para eliminar el archivo "texto_renombrado.txt".
  */
 
-/* fs.unlink("./prueba/texto_renombrado.txt", (error) => {
-    if (error) {
-        console.error(error);
-        } else {
-        console.log('Se ha eliminado correctamente el archivo texto_renombrado.txt');
-        }
-}); */
+// fs.unlink("./prueba/texto_renombrado.txt", (error) => {
+//     if (error) {
+//         console.error(error);
+//         } else {
+//         console.log('Se ha eliminado correctamente el archivo texto_renombrado.txt');
+//         }
+// }); 
 
 /* 8. Utiliza el método fs.rmdir() para eliminar el directorio "prueba". */
 
-/* fs.rdmir("prueba", (error) => {
-    if (error) {
-        console.error(error);
-        } else {
-        console.log('Se ha eliminado correctamente el directorio');
-        }
-}); */
+//  fs.rdmir("prueba", (error) => {
+//     if (error) {
+//         console.error(error);
+//         } else {
+//         console.log('Se ha eliminado correctamente el directorio');
+//         }
+// }); 
 
-/* STREAMS EN Node.JS
+
+
+    //SINTETIZAR EL EJERCICIO ANTERIOR en funciones: 
+
+// function gestionar(error, data) {
+//     if (error) {
+//         console.log("Error:", error);
+//     }
+//     else if (data) {
+//         console.log("Datos recibidos", data);
+//     }
+//     else {
+//         console.log("Comando ejectuado");
+//     }
+// }
+
+// fs.mkdir("prueba", gestionar);
+// fs.writeFile("prueba/texto.txt", "Hello World!", gestionar);
+// fs.readdir("prueba", gestionar);
+// fs.readFile("prueba/texto.txt", "utf-8", gestionar);
+// fs.rename("prueba/texto.txt", "./prueba/texto_renombrado.txt", gestionar);
+// fs.unlink("./prueba/texto_renombrado.txt", gestionar);
+// fs.rmdir("./prueba", gestionar);
+
+
+
+
+
+
+    /* STREAMS EN Node.JS
 Ejercicios
 
 1.Cree un programa en Node.js que lea un archivo de texto llamado "input.txt" usando un Readable
@@ -137,18 +174,18 @@ transformación se completaron con éxito. */
 //.toUpperCase() 
 //REPASAR Y ACTUALIZAR EJERCICIOS
 
-const readStream2 = fs.createReadStream('input.txt', 'utf8');
-const writeStream2 = fs.createWriteStream ("output.txt", "utf-8");
+// const readStream2 = fs.createReadStream('input.txt', 'utf8');
+// const writeStream2 = fs.createWriteStream ("output.txt", "utf-8");
 
-let chunk = 0;
-readStream2.on ("Data", (chunk) => {
-    writeStream2.write(chunk.toUpperCase());
-    chunk++;
-})
+// let chunk = 0;
+// readStream2.on ("Data", (chunk) => {
+//     writeStream2.write(chunk.toUpperCase());
+//     chunk++;
+// })
 
-readStream2.on ("end", () => {
-    console.log("Fragmentos totales: ", chunk)
-})
+// readStream2.on ("end", () => {
+//     console.log("Fragmentos totales: ", chunk)
+// })
 
 
 
