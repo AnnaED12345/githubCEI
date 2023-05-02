@@ -151,13 +151,13 @@ Ejercicios
 Stream. Procese los datos en fragmentos y cuente el número de fragmentos en el archivo. Al finalizar la
 lectura, muestre el total de líneas en la consola. */
 
-/* const fs = require("fs");
-const fragmentos = 0;
+// const fs = require("fs"); el modulo fs ya esta almacenado en el primer ejercicio.
 
-const readStream = fs.createReadStream('input.txt', 'utf8'); //lee el archivo
+/* const readStream = fs.createReadStream('input.txt', 'utf-8'); //lee el archivo
+let fragmentos = 0; //crear una variable let (por que va a variar) para contar los fragmentos
 
 readStream.on('data', (chunk) => { 
-    console.log('Datos recibidos', chunk); //procesa los datos
+    console.log('Datos recibidos'); //procesa los datos
     fragmentos++ //para contar el número de fragmentos
     });
 
@@ -171,25 +171,63 @@ Luego, escriba los fragmentos transformados en un nuevo archivo llamado "output.
 Writable Stream. Al finalizar la escritura, muestre un mensaje en la consola indicando que la copia y
 transformación se completaron con éxito. */
 
-//.toUpperCase() 
-//REPASAR Y ACTUALIZAR EJERCICIOS
+//.toUpperCase() --> para hacerlo en mayúsculas.
 
-// const readStream2 = fs.createReadStream('input.txt', 'utf8');
-// const writeStream2 = fs.createWriteStream ("output.txt", "utf-8");
+/* const readStream2 = fs.createReadStream('input.txt', 'utf-8'); //guardamos los fragmentos en una variable iniciando un stream de lectura
+const writeStream2 = fs.createWriteStream ("output.txt", "utf-8"); //guardamos la variable para el nuevo fichero iniciando un flujo de escritura
 
-// let chunk = 0;
-// readStream2.on ("Data", (chunk) => {
-//     writeStream2.write(chunk.toUpperCase());
-//     chunk++;
-// })
-
-// readStream2.on ("end", () => {
-//     console.log("Fragmentos totales: ", chunk)
-// })
+let chunks = 0; //contar los fragmentos 1 por 1 para conseguir el total de fragmentos y pasarlos a mayúsculas.
 
 
+//añadimos un listener en el flujo de lectura para que cada vez que recibimos un fragmento lo escribimos con writeStream2 en mayusculas.
+readStream2.on ("data", (chunk) => { 
+    writeStream2.write(chunk.toUpperCase());
+    // console.log(chunk.toUpperCase()); --> para que te aparezcan en mayúsucla.
+    chunks++;
+})
 
 
+//añadimos otro listener para cuando el flujo de lectura haya terminado y cerramos el stream de escritura
+readStream2.on ("end", () => {
+    console.log("Fragmentos totales: ", chunks)
+    writeStream2.end ();
+})
+ */
 
 
+/* Ejercicios PIPE
+    
+1. Crea un archivo llamado 'original.txt' y añade cualquier texto que desees. 
+*/
+const fs = require ('fs');
+
+fs.writeFile('original.txt', 'Texto deseado', (error) => {
+    if (error) {
+    console.error('Error al escribir el archivo:', error);
+    } else {
+    console.log('Archivo creado exitosamente');
+    }
+    });
+    
+/* 2. Crea un archivo llamado 'copy.js' e importa los módulos 'fs' y 'path'.
+ */
+
+/* 3. Utiliza el método fs.createReadStream() para crear un stream de lectura para el archivo 'original.txt'.
+ */
+    
+const readStream3 = fs.createReadStream("./original.txt", "utf-8");
+
+/* 4. Utiliza el método fs.createWriteStream() para crear un stream de escritura para un nuevo archivo
+llamado 'copia.txt'.
+ */
+
+const writeStream3 = fs.WriteStream("./copia.txt", "utf-8");
+
+/* 5. Utiliza el método .pipe() para copiar el contenido de 'original.txt' a 'copia.txt'.
+6. Ejecuta el archivo 'copy.js' con Node.js y verifica que se haya creado correctamente el archivo
+'copia.txt' con el mismo contenido que 'original.txt'.
+ */
+
+readStream3.pipe(writeStream3);
+console.log("Se ha copiado correctamente");
 
