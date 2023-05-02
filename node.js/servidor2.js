@@ -39,25 +39,9 @@ const server = http.createServer((req, res) => {
         } else {
             res.write(data);
         }
+        res.end();
     }); 
 
-    fs.readFile ("./public/entregable_temporizador.css", "utf-8", (error, data) => {
-        if (error) {
-            console.error("Error al escribir el archivo", error);
-        } else {
-            res.write(data);
-        }
-    }); 
-
-    fs.readFile ("./public/entregable_temporizador.js", "utf-8", (error, data) => {
-        if (error) {
-            console.error("Error al escribir el archivo", error);
-        } else {
-            res.write(data);
-        }
-    }); 
-
-    res.end();
     /* res.statusCode = 200;
     res.setHeader('Content-Type', contentType); */
     /* readStream.pipe(res); */
