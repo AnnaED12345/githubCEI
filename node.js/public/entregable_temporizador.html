@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>temporizador</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="entregable_temporizador.css">
+
+    </head>
+
+
+    <body>
+        <h1>TEMPORIZADOR</h1>
+        <h2>Ingresa los minutos y segundos deseados. </h2>
+
+
+        <form id="formulario" action="">
+
+            <label for="minutosID">Minutos:</label>
+            <input class="ingresar" type="number" name="minutos" id="minutosID">
+
+            <label for="segundosID">Segundos:</label>
+            <input class="ingresar" type="number" name="segundos" id="segundosID">
+
+        </form>
+
+        <form id="boton_enviar" action="">
+            <input id="enviar" type="submit" value="Iniciar"> 
+        </form>
+
+
+        <div id="contador">
+            <p id="temporizador">00:00</p>
+        </div>
+        
+        <script src="entregable_temporizador.js"></script>
+
+    </body>
+
+</html>
