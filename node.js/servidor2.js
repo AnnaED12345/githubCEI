@@ -16,11 +16,11 @@ Instrucciones:
 10. Prueba tu servidor visitando diferentes rutas de archivos en tu navegador.
 */
 
-const fs = require("fs");
+/* const fs = require("fs");
 const path = require ("path");
 const http = require ("http");
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req, res) => { */
     /* const readStream = fs.createReadStream('./public/entregable_temporizador.html', 'utf-8'); //guardamos el fichero en una variable  
     readStream.on('open', (chunk) => {
         console.log('Nuevo fragmento de datos:', chunk);
@@ -32,26 +32,26 @@ const server = http.createServer((req, res) => {
                 console.log(ficheros);
             }
         });  */
-    res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
+   /*  res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
     fs.readFile ("./public/entregable_temporizador.html", "utf-8", (error, data) => {
         if (error) {
             console.error("Error al escribir el archivo", error);
         } else {
             res.write(data);
         }
-        res.end();
+        res.end(data);
     }); 
-
+ */
     /* res.statusCode = 200;
     res.setHeader('Content-Type', contentType); */
     /* readStream.pipe(res); */
     
-});
+/* });
 
 server.listen(3000, () => {
     console.log('Servidor escuchando en el puerto 3000');
 });
-
+ */
 
 /* 
 const server = http.createServer((req, res) => {
@@ -93,3 +93,37 @@ const listener = server.listen(3000) */
 }); */
 
 
+//SOLUCIÓN:
+
+const fs = require("fs");
+const path = require ("path");
+const http = require ("http");
+const {getContentType, obtenerRutaAbsoluta} = require('./modulo');
+
+const express = require('express');
+console.log('express', express);
+
+const server = http.createServer((req, res) => { //creamos servidor
+    if (req.url === "/"){ //si el url de la ruta es === "/"
+        res.writeHead(200, {'Content-Type': 'text/plain; charset=UTF-8'});
+        res.end('Bienvenido al servidor HTTP');
+        return; 
+    }
+
+    //con __dirname sacamos la ruta absoluta hasta el directorio
+    //ruta hasta el directorio + nombre del directorio + peticion del fichero 
+    //obtenerRutaAbosulta: funcion guardad en el fichero modulos
+    const rutaFichero = obtenerRutaAbsoluta(req.url);
+    const readStream = fs.createReadStream(rutaFichero, 'utf-8');
+    readStream.on('error', () => {
+        res.writeHead(404, {'Content-Type': 'text/plain; charset=UTF-8'});
+        res.end(`El archivo ${req.url} no existe`);
+    });
+        const contentType = getContentType(req.url)
+        res.writeHead(200, {'Content-Type': `${contentType}; charset=UTF-8`});
+        readStream.pipe(res);
+}); 
+
+server.listen(3000, () => {
+    console.log('Servidor escuchando en el puerto 3000');
+});

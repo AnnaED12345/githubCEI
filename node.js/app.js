@@ -211,5 +211,3 @@ fs.writeFile('original.txt', 'Texto deseado', (error) => {
     
 /* 2. Crea un archivo llamado 'copy.js' e importa los módulos 'fs' y 'path'.
  */
-
-

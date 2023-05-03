@@ -1,0 +1,14 @@
+{
+  "name": "proyecto_npm",
+  "version": "1.0.0",
+  "description": "Crear un proyecto con npm ejercicio 1",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js"
+  },
+  "author": "Anna Emil",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
