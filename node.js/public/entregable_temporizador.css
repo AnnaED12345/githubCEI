@@ -1,5 +1,5 @@
 body {
-    background-image: url(https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    background-image: url(https://images.unsplash.com/photo-1614854262318-831574f15f1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80); 
     /* background-color: #9ab9bb; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -74,7 +74,7 @@ input#enviar {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(67, 104, 117);
     border: none;
     width: 30%;
     border-radius: 200px;

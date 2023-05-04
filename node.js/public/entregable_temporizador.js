@@ -1,18 +1,24 @@
 
 const btnIniciar = document.getElementById("enviar");
-const contador = document.getElementById("contador");
+let clearID;
 
-
-//función para guardar los numeros ingresados 
-let numerosIngresados = function numerosIngresados (tiempo) {
-    tiempo.preventDefault(); //para evitar que el comportamiento predeterminado de un evento ocurra.
-    let minutos = document.getElementById("minutosID").value;
-    let segundos = document.getElementById("segundosID").value;
+//función contador 
+let numerosIngresados = function (tiempo) { 
+    tiempo.preventDefault(); //para evitar que el comportamiento predeterminado de un evento ocurra: actualizar página
+    let minutos = document.getElementById("minutosID").value; //guardamos el valor de minutos
+    let segundos = document.getElementById("segundosID").value; //guardamos el valor de segundos
 
     let totalSegundos = (minutos * 60) + segundos; //para trabajar con el numero entero
-    console.log (totalSegundos);
-    
-    let clearID = setInterval(() => {
+    /* console.log (totalSegundos); */
+
+    //cambiar boton inciar - detener. (si es inciar ocurre ... si es detener ocurre...)
+    const textoIniciar = btnIniciar.getAttribute('value'); 
+    if (textoIniciar === "Iniciar"){
+      btnIniciar.setAttribute('value', "Detener"); 
+      btnIniciar.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+
+      //empieza el contador (set interval y guardamos ID para clearInterval)
+      clearID = setInterval(() => {
       console.log ("Quedan " + totalSegundos + " segundos.");
       const temporizador = document.getElementById("temporizador");
 
@@ -30,9 +36,16 @@ let numerosIngresados = function numerosIngresados (tiempo) {
       if (totalSegundos === -1) { // Detener el temporizador cuando llegue a 0
         clearInterval(clearID);
       }
-
     }, 1000); //queremos que se ejecute cada milisegundo
 
+    } else {
+      btnIniciar.setAttribute('value', "Iniciar");   
+      btnIniciar.style.backgroundColor = "rgb(67, 104, 117)";
+      temporizador.textContent = "00:00" ;
+
+      clearInterval(clearID);
+    }
+    
 };
 
 
@@ -50,9 +63,6 @@ btnIniciar.addEventListener("click", numerosIngresados);
 //     console.log (totalSegundos);
 // }); 
 
-btnIniciar.addEventListener("click", function() {
-  btnIniciar.style.backgroundColor = "rgb(67, 104, 117)";
-});
 
 
 
