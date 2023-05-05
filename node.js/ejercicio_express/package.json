@@ -1,0 +1,14 @@
+{
+  "name": "ejercicio_express",
+  "version": "1.0.0",
+  "description": "ejercicio manejo de rutas con Express",
+  "main": "app_express.js",
+  "scripts": {
+    "start":"node app_express.js"
+  },
+  "author": "Anna Emil",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
