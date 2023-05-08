@@ -32,13 +32,13 @@ app.put("/tareas/:id", (req, res) => { //put para actualizar las tareas
     //id es para identificar una tarea concreta --> id = posicion en el array
     //si nuestro id son números deberiamos pasarlo a string con paresInt
     const tareasID = parseInt(req.params.id); //en este caso params por que estas accediendo al parametro y no al body
-    if (tareasID < 0) {
+    if (tareasID < 0) { //si el id es menor a 0 no existe
         res.status(404).send("No existe esta tarea")
     }
-    else { 
-        tareas[tareasID] = req.body.tarea;
-        res.status(201).send(`Se ha actualizado la tarea ${tareasID}`);
-    }
+    else { //aquí debemos actualizar la tarea
+            tareas[tareasID] = req.body.tarea;
+            res.status(201).send(`Se ha actualizado la tarea ${tareasID}`);
+        }
 });
 
 app.delete("/", (req, res) => {
