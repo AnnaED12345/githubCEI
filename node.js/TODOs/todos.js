@@ -11,7 +11,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const tareas = ["Estudiar", "Limpiar", "Comprar"];
 
-app.use(bodyParser.json()); //middleware que pasa el body a req.body 
+app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 
 app.get("/", (req, res) => { //con el metodo get leemos los recursos
     res.send(tareas); //respondemos enviando el array de tareas
@@ -23,13 +23,22 @@ app.post("/", (req, res) => { //post para añadir tareas
     }
     else{ //si se añade 
         tareas.push(req.body.tarea); //push actualiza el array
-        res.status(201).send("Se ha añadido correctamente");
+        let nuevaTarea = req.body.tarea; //almacenamos el array actualizado
+        res.status(201).send(`Se ha añadido correctamente la tarea ${nuevaTarea}`);
     };
 });
 
 app.put("/tareas/:id", (req, res) => { //put para actualizar las tareas
-    //id es para identificar la tarea --> id es la posicion en el array
-    res.status(201).send(tareas[id]);
+    //id es para identificar una tarea concreta --> id = posicion en el array
+    //si nuestro id son números deberiamos pasarlo a string con paresInt
+    const tareasID = parseInt(req.params.id); //en este caso params por que estas accediendo al parametro y no al body
+    if (tareasID < 0) {
+        res.status(404).send("No existe esta tarea")
+    }
+    else { 
+        tareas[tareasID] = req.body.tarea;
+        res.status(201).send(`Se ha actualizado la tarea ${tareasID}`);
+    }
 });
 
 app.delete("/", (req, res) => {
