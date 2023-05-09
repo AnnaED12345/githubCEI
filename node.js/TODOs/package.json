@@ -4,12 +4,13 @@
   "description": "aplicación de gestión de tareas TODOs",
   "main": "todos.js",
   "scripts": {
-    "start": "node todos.js"
+    "start": "nodemon todos.js"
   },
   "author": "Anna Emil",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
   }
 }

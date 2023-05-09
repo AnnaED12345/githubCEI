@@ -21,13 +21,20 @@ existentes.
         </div>
 
         <form id="formulario" action="">
-            <label for="tarea"></label>
-            <input class="ingresar" type="text" name="tarea" id="tareaID">
+            <label id="cajaIngresar" for="tarea"></label>
+            <input type="text" name="tarea" id="tareaID">
 
-            <input id="enviar" type="submit" value="Añadir"> 
+            <input id="btnAnadir" type="submit" value="Añadir"> 
         </form>
 
+        <div id="cajaTareas">
+            <p>Tareas añadidas:</p>
+            <ul id="listaTareas">
+                
+            </ul>
+        </div>
 
+        <script src="cargartareas.js"></script>
 
     </body>
 
