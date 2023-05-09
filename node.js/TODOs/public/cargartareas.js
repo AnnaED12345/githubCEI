@@ -1,3 +1,4 @@
+
 //Usamos Fetch para enviar una solicitud a un servidor y obtener datos de respuesta en formato JSON.
 
 
@@ -9,17 +10,20 @@
  */
 
 
-//1.
 const request = fetch("/tareas"); //guardamos la petición en una variable 
 console.log(request); //la imprimimos por pantalla para ver que recibimos de la petición
 
-//2.
-//fetch nos devuelve una promesa, por lo tanto resolvemos con .then
-request.then ((response) => {
+const listaTareas = document.getElementById("listaTareas"); //guardamos en una variable el elemento html dónde queremos meter las tareas
+
+request.then ((response) => { // respondemos a la promesa con .then
     return response.json(); //responde como fichero json y lo pasamos a js
 }).then ((datos) => { //datos = respuesta JS anterior
-    console.log(datos)
+    datos.forEach(tarea => { //recorremos el array. datos.for each = por cada dato/tarea, ocurre lo siguiente: 
+        const tareaItem = document.createElement('li'); //se crea un elemento en la lista. 
+        tareaItem.textContent = tarea; //se asigna el texto de la tarea en el elemento li
+        //se agrega el nuevo elemento li como hijo del elemento listaTareas utilizando el método appendChild().
+        listaTareas.appendChild(tareaItem); //al ul le añadimos el li
+    });
 });
 
-const listaTareas = document.getElementById("listaTareas");
 

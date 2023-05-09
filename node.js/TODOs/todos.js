@@ -11,7 +11,7 @@ const app = express();
 
 const bodyParser = require("body-parser");
 
-const tareas = ["Estudiar", "Limpiar", "Comprar"];
+const tareas = [];
 
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 app.use(express.static('public')); //
