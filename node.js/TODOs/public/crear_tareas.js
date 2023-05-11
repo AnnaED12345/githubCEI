@@ -30,8 +30,10 @@ const crearTarea = function (event) {
             "Content-Type": "application/json" //informamos de que estamos enviando un formato json
         }
     }) .then((res) => {  //cuando la promesa se cumple: 
-        if (res.ok) { //si es correcta: 
+        if (res.ok) { //si es correcta:
             cargarTareas();
+            document.getElementById("tareaID").value = ""; // no usamos la variable tarea por que ahí almancenamos el valor pero no lo obtenemos. Explicado detalladamente abajo:
+
             /* const nuevaTarea = document.createElement('li'); //creamos un li
             nuevaTarea.textContent = tarea;
 
@@ -53,3 +55,13 @@ enter[0].addEventListener("keydown", (event) => { //input nos envia un array y r
         return crearTarea(event);
     }
 });
+
+
+
+
+// document.getElementbyId ("tareaID").value = "";
+/* En el caso de tu código, cuando haces const tarea = document.getElementById("tareaID").value, la variable tarea contiene el
+valor de la propiedad value del elemento del DOM con el ID tareaID. Esto es un valor primitivo, por lo que cuando haces 
+tarea = "", estás simplemente asignando un nuevo valor a la variable. Esto no afecta al elemento del DOM en sí.
+Por lo tanto, para borrar el contenido del input en el DOM, necesitas acceder directamente al elemento del DOM y establecer 
+su propiedad value en una cadena vacía. Podrías hacerlo de esta forma: document.getElementbyId ("tareaID").value = ""; */

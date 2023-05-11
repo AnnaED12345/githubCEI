@@ -18,20 +18,35 @@ const listaTareas = document.getElementById("listaTareas"); //guardamos en una v
 request.then ((response) => { // respondemos a la promesa con .then
     return response.json(); //responde como fichero json y lo pasamos a js
 }).then ((datos) => { //datos = respuesta JS anterior
-    datos.forEach(tarea => { //recorremos el array. datos.for each = por cada dato/tarea, ocurre lo siguiente: 
+    eliminarTareas(); //llamamos a la función eliminar tareas antes de crear nuevas. 
+    datos.forEach(tarea => { //recorremos el array. datos.for each = por cada dato/tarea, ocurre lo siguiente:
         const tareaItem = document.createElement('li'); //se crea un elemento en la lista. 
         tareaItem.textContent = tarea; //se asigna el texto de la tarea en el elemento li
+
+        const botonBorrar = document.createElement("button");
+        botonBorrar.setAttribute("class", "btnBorrar");
+        botonBorrar.addEventListener("click", borrarTareas);
+        /* console.log(botonBorrar); */
+        botonBorrar.textContent = "x";
+
         //se agrega el nuevo elemento li como hijo del elemento listaTareas utilizando el método appendChild().
         listaTareas.appendChild(tareaItem); //al ul le añadimos el li
+        tareaItem.appendChild(botonBorrar);
         });
     });
 } 
 
+//función para eliminar tareas cada vez que agregamos una nueva . 
 const eliminarTareas = () => {
-    while (listaTareas.length > 0) {
-        listaTareas[0].remove();
+    //debe ser listasTareas.children.length ya que no nos devuelve un array por lo tanto, listastareas.length sería incorrecto.
+    //con listaTareas.children.length lo que le decimos es que elimine los hijos del elemento listaTareas
+    while (listaTareas.children.length > 0) { //mientras que la lista de tareas sea mayor a 0
+        listaTareas.children[0].remove(); //se eliminan los elementos
     }
 }
+
+
+
 
 
 
