@@ -11,16 +11,38 @@ fetch (/tareas/${tareaid}) -- metodo delete */
 
 //const btnBorrar = document.getElementsByClassName("btnBorrar"); //devuelve un elemento HTMLCollection que resolvermos con un bucle forEach ya que tenemos varios botones y queremos que por cada boton creado, ocurra x
 const btnBorrar = document.querySelectorAll("button");
-console.log (btnBorrar);
+/* console.log (btnBorrar); */
 
 // función borrar tareas
 const borrarTareas = (event) => {
     event.preventDefault();
-    
       console.log("haces click al boton eliminar");
+
+      //fetch method DELETE
+
+      const options = {
+        method: 'DELETE',
+        // body:  no es necesario ya que no se envian datos. 
+        headers: {
+            "Content-Type": "application/json"
+      }
+    }
+
+      const post = fetch ("/tareas/:id", options)
+      .then((res) => {  //cuando la promesa se cumple: 
+        if (res.ok) { //si es correcta:
+            /* const tareaLista = document.querySelectorAll('li'); */
+            /* Debemos aplicar event.target.parentElement sobre el evento y no sobre la variable del boton por que de 
+            esta forma, el event listener sabrá a qué botón se ha hecho clic y qué tarea debe ser eliminada. */
+            const tareaSeleccionada = event.target.parentElement; // el padre del botón es el elemento li.
+            console.log(tareaSeleccionada);
+            tareaSeleccionada.remove(); //se borra el elemento
+            /* console.log(`La tarea ${tareaID} ha sido eliminada`) */
+        } else {
+            console.log ("No existe esta tarea");
+        }
+    }) 
   }
-
-
 
 
 
