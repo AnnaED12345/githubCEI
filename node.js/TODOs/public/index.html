@@ -13,22 +13,33 @@ existentes.
          <title>proyecto TODOs</title>
          <meta charset="UTF-8"/>
          <link rel="stylesheet" href="style.css">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+   
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
     </head>
 
     <body>
         <div>
-            <h1>Lista de tareas</h1>
+            <h1>To-Do List</h1>
         </div>
 
         <form id="formulario" action="">
             <label id="cajaIngresar" for="tarea"></label>
             <input class="texto" type="text" placeholder="Agregar tarea..." name="tarea" id="tareaID">
             
-            <input id="btnAnadir" type="submit" value="Añadir"> 
+            <input id="btnAnadir" type="submit" value="+"> 
         </form>
 
+        <p>Tareas añadidas:</p>
+
         <div id="cajaTareas">
-            <p>Tareas añadidas:</p>
+            
             <ol id="listaTareas">
                 
             </ol>

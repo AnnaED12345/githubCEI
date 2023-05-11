@@ -1,0 +1,77 @@
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
+h1 { 
+    font-size: 25px;
+    width: 50%; /* establece el ancho del elemento */
+    margin: 0 auto; /* centra el elemento horizontalmente */
+    text-align: center;
+    padding: 2%;
+    padding-bottom: 2%;
+    color: #ff8c49;
+}
+
+#formulario {
+    width: 50%; 
+    margin: 0 auto; 
+    padding: 2%;
+    text-align: center;
+}
+
+input.texto {
+    font-size: 35px;
+    padding: 2%;
+    border: none;
+    width: 70%;
+}
+
+input#btnAnadir {
+    font-size: 35px;
+    border: none;
+    border-radius: 100%;
+    width: 8%;
+    background-color: #eaeaea29;
+}
+
+input#btnAnadir:hover {
+    background-color: #eaeaea5d;
+    
+}
+
+div#cajaTareas {
+    width: 50%; 
+    margin: 0 auto; 
+    padding: 2%;
+    background-color: #eaeaea5d;
+    /* background-image: linear-gradient(to bottom right, rgba(255, 255, 0, 0.475), #ff8c49);; */
+    width: 40%;    
+    border-radius: 50px;
+}
+
+p {
+    width: 40%;
+    margin: 0 auto;
+    font-size: 25px;
+    font-weight: lighter;
+    padding: 2%;
+}
+
+li {
+    /* font-weight: lighter; */
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;;
+    padding: 8px;
+}
+
+button.btnBorrar {
+    font-size: 25px;
+    background-color: transparent;
+    color:#ff8c49 ;
+    border: none;
+    text-align: right;
+    border-radius: 100%;
+    text-align: center;
+    width: 6%;
+    padding: 0%;
+}
