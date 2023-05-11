@@ -9,7 +9,7 @@
 4.Nos devuelve otra promesa. Aquí se pasa el objeto JS como argumento y lo imprimimos por consola.
  */
 
-
+const cargarTareas = () => { 
 const request = fetch("/tareas"); //guardamos la petición en una variable 
 console.log(request); //la imprimimos por pantalla para ver que recibimos de la petición
 
@@ -23,8 +23,16 @@ request.then ((response) => { // respondemos a la promesa con .then
         tareaItem.textContent = tarea; //se asigna el texto de la tarea en el elemento li
         //se agrega el nuevo elemento li como hijo del elemento listaTareas utilizando el método appendChild().
         listaTareas.appendChild(tareaItem); //al ul le añadimos el li
+        });
     });
-});
+} 
+
+const eliminarTareas = () => {
+    while (listaTareas.length > 0) {
+        listaTareas[0].remove();
+    }
+}
+
 
 
 
