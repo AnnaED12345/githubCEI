@@ -6,10 +6,12 @@ Backend (ExpressJS):
 - d. Utilizar un array para almacenar las tareas en la memoria del servidor.
  */
 
-const express = require("express"); 
+import express from 'express';
+import bodyParser from 'body-parser';
+/* const express = require("express");  */
 const app = express();
 
-const bodyParser = require("body-parser");
+/* const bodyParser = require("body-parser"); */
 
 const tareas = [];
 
@@ -20,8 +22,17 @@ app.get("/tareas", (req, res) => { //con el metodo get leemos los recursos
     res.send(tareas); //respondemos enviando el array de tareas
 });
 
+app.get('/tareas/:id', (req, res) => {
+    const tareaId = parseInt(req.params.id);
+    if (tareasID < 0 || tareas[tareasID] === undefined) { //si el id es menor a 0 no existe - error
+        res.status(400).send("No existe esta tarea")
+    }
+    const tarea = tareas[tareaId];
+    res.status(200).send(tarea);
+})
+
 app.post("/tareas", (req, res) => { //post para añadir tareas 
-    if (req.body.tarea === undefined){ //si no se añade ninguna tarea, da error
+    if (req.body.tarea === ""){ //si no se añade ninguna tarea, da error
         res.status(400).send("Tienes que añadir una tarea") 
     }
     else{ //si se añade 

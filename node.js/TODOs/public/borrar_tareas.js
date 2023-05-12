@@ -14,12 +14,11 @@ const btnBorrar = document.querySelectorAll("button");
 /* console.log (btnBorrar); */
 
 // función borrar tareas
-const borrarTareas = (event) => {
+const borrarTareas = (event, id) => {
     event.preventDefault();
       console.log("haces click al boton eliminar");
-
       //fetch method DELETE
-
+      
       const options = {
         method: 'DELETE',
         // body:  no es necesario ya que no se envian datos. 
@@ -28,12 +27,13 @@ const borrarTareas = (event) => {
       }
     }
 
-      const post = fetch ("/tareas/:id", options)
+      const borrar = fetch (`/tareas/${id}`, options)
       .then((res) => {  //cuando la promesa se cumple: 
         if (res.ok) { //si es correcta:
             /* const tareaLista = document.querySelectorAll('li'); */
             /* Debemos aplicar event.target.parentElement sobre el evento y no sobre la variable del boton por que de 
             esta forma, el event listener sabrá a qué botón se ha hecho clic y qué tarea debe ser eliminada. */
+            cargarTareas();
             const tareaSeleccionada = event.target.parentElement; // el padre del botón es el elemento li.
             console.log(tareaSeleccionada);
             tareaSeleccionada.remove(); //se borra el elemento

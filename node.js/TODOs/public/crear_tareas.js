@@ -39,9 +39,8 @@ const crearTarea = function (event) {
 
             listaTareas3.appendChild(nuevaTarea); */
         } else {
-            console.log("Error: Tienes que añadir una tarea")
+            console.log("Error: Tienes que añadir una tarea");
         }
-
     }) 
 }
 
