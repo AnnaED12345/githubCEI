@@ -38,6 +38,7 @@ request.then ((response) => { // respondemos a la promesa con .then
         //por cada elemento se crea un boton EDITAR
         const botonEditar = document.createElement("button");
         botonEditar.setAttribute("class", "btnEditar");
+        botonEditar.addEventListener("click", () => abrirDialogoActalizar(event, id));
         botonEditar.textContent = "Editar";
 
         //se agrega el nuevo elemento li como hijo del elemento listaTareas utilizando el método appendChild().
