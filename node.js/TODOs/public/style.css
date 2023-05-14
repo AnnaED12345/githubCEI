@@ -91,12 +91,12 @@ button.btnEditar {
 
 button.btnBorrar:hover {
     color:#fbaa7b;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 button.btnEditar:hover {
     color: rgb(95, 188, 95);
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 /* DIALOGOS */
