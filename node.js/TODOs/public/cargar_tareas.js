@@ -23,18 +23,27 @@ request.then ((response) => { // respondemos a la promesa con .then
         const tareaItem = document.createElement('li'); //se crea un elemento en la lista. 
         tareaItem.textContent = tarea; //se asigna el texto de la tarea en el elemento li
         
+        
         //console.log(id); //el segundo paramentro del array nos devuelve la posición
 
-        //por cada elemento se crea un boton:
+        //por cada elemento se crea un boton DELETE:
         const botonBorrar = document.createElement("button");
         botonBorrar.setAttribute("class", "btnBorrar");
-        botonBorrar.addEventListener("click", (event) => borrarTareas(event, id)); //debemos pasar la posicion del elemento como parametro
+        /* botonBorrar.addEventListener("click", (event) => borrarTareas(event, id)); */ //debemos pasar la posicion del elemento como parametro
+        botonBorrar.addEventListener("click", () => abrirDialogo(event, id));
         /* console.log(botonBorrar); */
-        botonBorrar.textContent = "x";
+        botonBorrar.textContent = "Borrar";
+
+
+        //por cada elemento se crea un boton EDITAR
+        const botonEditar = document.createElement("button");
+        botonEditar.setAttribute("class", "btnEditar");
+        botonEditar.textContent = "Editar";
 
         //se agrega el nuevo elemento li como hijo del elemento listaTareas utilizando el método appendChild().
         listaTareas.appendChild(tareaItem); //al ul le añadimos el li
         tareaItem.appendChild(botonBorrar);
+        tareaItem.appendChild(botonEditar);
         });
     });
 } 
@@ -58,9 +67,6 @@ const eliminarTareas = () => {
 } */
 
 //FUNCION PARA CREAR UN ENLACE 
-
-
-
 
 
 

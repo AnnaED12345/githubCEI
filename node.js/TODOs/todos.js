@@ -15,22 +15,31 @@ const app = express();
 
 const tareas = [];
 
+
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 app.use(express.static('public')); //
 
+
+//----------- METODO GET --------------
 app.get("/tareas", (req, res) => { //con el metodo get leemos los recursos
     res.send(tareas); //respondemos enviando el array de tareas
 });
 
-app.get('/tareas/:id', (req, res) => {
-    const tareaId = parseInt(req.params.id);
-    if (tareasID < 0 || tareas[tareasID] === undefined) { //si el id es menor a 0 no existe - error
-        res.status(400).send("No existe esta tarea")
-    }
-    const tarea = tareas[tareaId];
-    res.status(200).send(tarea);
+
+//----------- METODO GET PARA UNA URL CONCRETA --------------
+app.get('/tareas/:id', (req, res) => { //get una tarea en concreto
+    const tareaId = parseInt(req.params.id); //guardamos en una variable el paramentro.id de la ruta para la tarea especifica
+    if (tareaId < 0 || tareas[tareaId] === "") { //si el id es menor a 0 no existe - error
+    //** usamos tarea[tareaId] para acceder a un elemento dentro del array de tareas*/
+        res.status(400).send("No existe esta tarea") 
+    } else {
+        const tarea = tareas[tareaId];
+        res.status(200).send(tarea); //si existe, devolvemos el id de latarea
+    }  
 })
 
+
+//----------- METODO POST --------------
 app.post("/tareas", (req, res) => { //post para añadir tareas 
     if (req.body.tarea === ""){ //si no se añade ninguna tarea, da error
         res.status(400).send("Tienes que añadir una tarea") 
@@ -42,6 +51,8 @@ app.post("/tareas", (req, res) => { //post para añadir tareas
     };
 });
 
+
+//----------- METODO PUT --------------
 app.put("/tareas/:id", (req, res) => { //put para actualizar las tareas
     //id es para identificar una tarea concreta --> id = posicion en el array
     const tareasID = (req.params.id); //en este caso params por que estas accediendo al parametro y no al body
@@ -59,6 +70,8 @@ app.put("/tareas/:id", (req, res) => { //put para actualizar las tareas
         }  
 });
 
+
+//----------- METODO DELETE --------------
 app.delete("/tareas/:id", (req, res) => { //elimina tareas
     //parseInt() --> convierte una cadena de caracteres a un número entero. 
     //En este caso, se utiliza para convertir el valor del parámetro id que se obtiene de la URL a un número entero, que se utiliza para identificar la tarea que se desea eliminar del array.

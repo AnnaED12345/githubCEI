@@ -14,37 +14,39 @@ const btnBorrar = document.querySelectorAll("button");
 /* console.log (btnBorrar); */
 
 // función borrar tareas
-const borrarTareas = (event, id) => {
-    event.preventDefault();
-      console.log("haces click al boton eliminar");
-      //fetch method DELETE
+// const borrarTareas = (event, id) => {
+//     event.preventDefault();
+//       console.log("haces click al boton eliminar");
+//       //fetch method DELETE
       
-      const options = {
-        method: 'DELETE',
-        // body:  no es necesario ya que no se envian datos. 
-        headers: {
-            "Content-Type": "application/json"
-      }
-    }
+//       const options = {
+//         method: 'DELETE',
+//         // body:  no es necesario ya que no se envian datos. 
+//         headers: {
+//             "Content-Type": "application/json"
+//       }
+//     }
 
-      const borrar = fetch (`/tareas/${id}`, options)
-      .then((res) => {  //cuando la promesa se cumple: 
-        if (res.ok) { //si es correcta:
-            /* const tareaLista = document.querySelectorAll('li'); */
-            /* Debemos aplicar event.target.parentElement sobre el evento y no sobre la variable del boton por que de 
-            esta forma, el event listener sabrá a qué botón se ha hecho clic y qué tarea debe ser eliminada. */
-            cargarTareas();
-            const tareaSeleccionada = event.target.parentElement; // el padre del botón es el elemento li.
-            console.log(tareaSeleccionada);
-            tareaSeleccionada.remove(); //se borra el elemento
-            /* console.log(`La tarea ${tareaID} ha sido eliminada`) */
-        } else {
-            console.log ("No existe esta tarea");
-        }
-    }) 
-  }
+//       const borrar = fetch (`/tareas/${id}`, options)
+//       .then((res) => {  //cuando la promesa se cumple: 
+//         if (res.ok) { //si es correcta:
+//             /* const tareaLista = document.querySelectorAll('li'); */
+//             /* Debemos aplicar event.target.parentElement sobre el evento y no sobre la variable del boton por que de 
+//             esta forma, el event listener sabrá a qué botón se ha hecho clic y qué tarea debe ser eliminada. */
+//           cargarTareas();          
+//           const tareaSeleccionada = event.target.parentElement; // el padre del botón es el elemento li.
+//           console.log(tareaSeleccionada);
+//           tareaSeleccionada.remove(); //se borra el elemento
+//           /* console.log(`La tarea ${tareaID} ha sido eliminada`) */
 
+//         } else {
+//             console.log ("No existe esta tarea");
+//         }
+//     }) 
+//   }
 
+  //addeventlistener: botones: 
+  
 
 // AÑADIR EVENTO A CADA ELEMENTO (BOTON) DE LA COLECCIÓN
 /* forEach no es una opción válida para recorrer elementos HTMLCollection.
@@ -68,4 +70,56 @@ Por lo que se puede resolver de dos maneras:
     }
 } */
 
+
+const abrirDialogo = (event, id) => {
+  event.preventDefault();
+  
+  const borrarDialogo = document.getElementById('borrar_dialogo');
+  borrarDialogo.showModal();
+
+  //boton confirmar
+  const confirmar_borrar = document.getElementById('confirmar_borrar');
+  confirmar_borrar.addEventListener("click", function () {
+      borrarTareas(event, id);
+      return borrarDialogo.close();
+    })
+
+  //boton cancelar
+  const cancelar_borrar = document.getElementById('cancelar_borrar');
+  cancelar_borrar.addEventListener("click", function () {
+      borrarDialogo.close();
+    })
+
+}
  
+
+const borrarTareas = (event, id) => {
+  event.preventDefault();
+    console.log("haces click al boton eliminar");
+    //fetch method DELETE
+    
+    const options = {
+      method: 'DELETE',
+      // body:  no es necesario ya que no se envian datos. 
+      headers: {
+          "Content-Type": "application/json"
+    }
+  }
+
+    const borrar = fetch (`/tareas/${id}`, options)
+    .then((res) => {  //cuando la promesa se cumple: 
+      if (res.ok) { //si es correcta:
+          /* const tareaLista = document.querySelectorAll('li'); */
+          /* Debemos aplicar event.target.parentElement sobre el evento y no sobre la variable del boton por que de 
+          esta forma, el event listener sabrá a qué botón se ha hecho clic y qué tarea debe ser eliminada. */
+        cargarTareas();
+        const tareaSeleccionada = event.target.parentElement; // el padre del botón es el elemento li.
+        console.log(tareaSeleccionada);
+        tareaSeleccionada.remove(); //se borra el elemento
+        /* console.log(`La tarea ${tareaID} ha sido eliminada`) */
+
+      } else {
+          console.log ("No existe esta tarea");
+      }
+  }) 
+}

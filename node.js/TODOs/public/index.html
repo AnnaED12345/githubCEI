@@ -33,7 +33,7 @@ existentes.
             <label id="cajaIngresar" for="tarea"></label>
             <input class="texto" type="text" placeholder="Agregar tarea..." name="tarea" id="tareaID">
             
-            <input id="btnAnadir" type="submit" value="+"> 
+            <input id="btnAnadir" type="submit" value=" + "> 
         </form>
 
         <p>Tareas añadidas:</p>
@@ -41,13 +41,50 @@ existentes.
         <div id="cajaTareas">
             
             <ol id="listaTareas">
-                
+                <li>Tarea 1 
+                    <button class="btnBorrar">Borrar</button>
+                    <button class="btnEditar">Editar</button>
+                </li>
+                <li>Tarea 2</li>
+                <li>Tarea 3</li>
             </ol>
+        </div>
+
+        <div>
+            <dialog id="borrar_dialogo">
+                <p>¿Estás seguro de que deseas borrar esta tarea?</p>
+                <button id="confirmar_borrar">Borrar</button>
+                <button id="cancelar_borrar">Cancelar</button>
+              </dialog>
+        </div>
+
+        <div>
+            <dialog id="editar_dialogo">
+                <form action="">
+                    <input class="editar_texto" type="text" placeholder="Actualiza tu tarea..." name="tarea_actualizada" id="tarea_actualizadaID">
+                </form>
+                <input id="btnOk" type="submit" value="Aceptar">
+                <input id="btnCancelar" type="submit" value="Cancelar">  
+              </dialog>
         </div>
 
         <script src="cargar_tareas.js"></script>
         <script src="crear_tareas.js"></script>
         <script src="borrar_tareas.js"></script>
+        <!-- <script src="actualizar_tereas.js"></script> -->
+
+
+        <!-- mostrar los dialogos para style.css -->
+        <script> 
+            // Obtener los elementos de diálogo
+            const borrarDialogo = document.getElementById('borrar_dialogo');
+            const editarDialogo = document.getElementById('editar_dialogo');
+          
+            // Mostrar los diálogos
+            /* borrarDialogo.showModal(); */
+            /* editarDialogo.showModal(); */
+          </script>
+
 
     </body>
 
