@@ -154,7 +154,7 @@ input.editar_texto{
     border-radius: 20px;
     padding: 5%;
     margin-top: 5%;
-    margin-bottom: 2%
+    margin-bottom: 2%;
 }
 
 input#btnOk, input#btnCancelar {

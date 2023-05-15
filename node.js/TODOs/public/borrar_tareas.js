@@ -74,9 +74,10 @@ Por lo que se puede resolver de dos maneras:
 const abrirDialogo = (event, id) => {
   event.preventDefault();
 
-  const callback = function () {
-    borrarTareas(event, id);
-    confirmar_borrar.removeEventListener("click", callback); 
+  const eventoConfirmar = function () { //Callback de la función ...*
+    borrarTareas(event, id); //se llama a la función borrar tareas
+    //es importante entender: la función ejecuta borrar tareas y BORRA el event listener
+    confirmar_borrar.removeEventListener("click", eventoConfirmar); //...* y posteriormente se borra el listener para no acumularlo
     return borrarDialogo.close();
   };
   
@@ -85,21 +86,31 @@ const abrirDialogo = (event, id) => {
 
   //boton confirmar
   const confirmar_borrar = document.getElementById('confirmar_borrar');
-  confirmar_borrar.addEventListener("click", callback);
+  //aquí CREMOS un event listener haciendo referencia a eventoConfirmar dónde BORRAMOS el eventlistener
+  confirmar_borrar.addEventListener("click", eventoConfirmar); //en el boton de confirmar llamamos a la función Confirmar
   
 
   //boton cancelar
   const cancelar_borrar = document.getElementById('cancelar_borrar');
   cancelar_borrar.addEventListener("click", function () {
       borrarDialogo.close();
-      confirmar_borrar.removeEventListener("click", callback);
+      confirmar_borrar.removeEventListener("click", eventoConfirmar);
     })
+
+     //al hacer click en entre se recarga la pagina: ¿cómo solucionamos esto?
+    //al pulsar enter no queremos que pase nada
+    borrarDialogo.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    });
 }
  
 
 const borrarTareas = (event, id) => {
   event.preventDefault();
     console.log("haces click al boton eliminar");
+    
     //fetch method DELETE
     
     const options = {
@@ -126,4 +137,4 @@ const borrarTareas = (event, id) => {
           console.log ("No existe esta tarea");
       }
   }) 
-}
+  };
