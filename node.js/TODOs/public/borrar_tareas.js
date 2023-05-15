@@ -73,23 +73,27 @@ Por lo que se puede resolver de dos maneras:
 
 const abrirDialogo = (event, id) => {
   event.preventDefault();
+
+  const callback = function () {
+    borrarTareas(event, id);
+    confirmar_borrar.removeEventListener("click", callback); 
+    return borrarDialogo.close();
+  };
   
   const borrarDialogo = document.getElementById('borrar_dialogo');
   borrarDialogo.showModal();
 
   //boton confirmar
   const confirmar_borrar = document.getElementById('confirmar_borrar');
-  confirmar_borrar.addEventListener("click", function () {
-      borrarTareas(event, id);
-      return borrarDialogo.close();
-    })
+  confirmar_borrar.addEventListener("click", callback);
+  
 
   //boton cancelar
   const cancelar_borrar = document.getElementById('cancelar_borrar');
   cancelar_borrar.addEventListener("click", function () {
       borrarDialogo.close();
+      confirmar_borrar.removeEventListener("click", callback);
     })
-
 }
  
 
