@@ -4,7 +4,6 @@ Instrucciones:
 */
 
 
-
 const abrirDialogoActalizar = (event, id) => {
     event.preventDefault();
 
@@ -34,10 +33,15 @@ const abrirDialogoActalizar = (event, id) => {
     //al pulsar enter queremos que se actualice
     const campoEditar = document.getElementsByClassName("editar_texto");
 
+    const enterEditar = function () {
+      
+    };
+
     campoEditar[0].addEventListener("keydown", (event) => { //input nos envia un array y recogemos el primer elemento = posición 0
         if (event.key === "Enter"){
             event.preventDefault();
             eventoEditar();
+            
         }
     });
 }

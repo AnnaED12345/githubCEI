@@ -15,16 +15,90 @@
       function MyApp() {
         //const nombre = prompt (`Inserta aquí tu nombre`); //las variables se almacenan antes de return
         //en return todos los elementos deben de ir dentro de un único elemento padre
+        const tasks = [
+          {
+            id: 0,
+            description: "Estudiar"
+          },
+          {
+            id: 1,
+            description: "Comprar"
+          }
+        ]
+        const usuarios = [
+          {
+            id: 44534,
+            nombre: "Miguel"
+          },
+          {
+            id: 54354,
+            nombre: "María"
+          }
+        ]
         return ( 
           <div>
-            <Header/>
-            <CurrentDate/>
-            <GroceryList/>
-            <UserProfile nombre = "Anna" correo = "anna@gmail.com"/>
-            <WelcomeMessage isLoggedIn = {true} nombre = "Anna"/>
+            <Input/>
             </div>
         )
       } 
+
+      //Ejercicio: 
+    /*   - Renderiza un input de tipo text.
+      - Imprime por consola lo que el usuario escribe cada vez que modifica el input.
+      - Pista: puedes usar el evento input */
+
+    function Input ({onInput}) {
+      const textChange = (event) => { //guardamos en una variable que función queremos que ocurra en el listener
+        console.log(event.target.value); //accedemos al valor del evento 
+      }
+      return <input onInput={textChange} />//hacemos un callback a la función y le añadimos el evento onInput
+      
+    }
+
+
+      //Ejercicio similar al de abajo:
+    
+      function Usuario ({nombre, id}) {//Creamos un componente usuario que acepte dos props: nombre y usuario
+        return <h2>{nombre}</h2> //muestra el nombre del usuario dentro de un elemnto h2
+      }
+
+      function ListaUsuarios ({usuarios}){ //creamos un componente ListaUsuarios que recibe el array de usuarios como prop
+      return (
+        //.map devuelve un array de componentes que se renderizan 
+       usuarios.map((usuario) => ( 
+        <Usuario key={usuario.id} nombre = {usuario.nombre} id = {usuario.id}/> 
+       ))
+      )
+    }
+
+      //---------------- 
+        /* Ejercicio: Crear una lista de tareas
+- Objetivo: Crear una lista de tareas pendientes en React utilizando componentes y props.
+- Instrucciones:
+- Crea un componente Task que acepte una prop task y muestre el contenido de la tarea dentro
+de un elemento <li>.
+- Crea un componente TaskList que reciba un array de tareas como prop tasks. Utiliza la función
+.map() para generar un array de componentes Task a partir del array de tareas.
+- Asegúrate de asignar una key única a cada componente Task dentro del componente TaskList.
+- Renderiza el componente TaskList en tu aplicación y proporciona un array de tareas de ejemplo.
+ */
+  
+  function Task ({description}) { //creamos component Task que recibe la descripción de la tarea(task)
+    return (
+      <li>{description}</li>
+    )
+  }
+
+  function TaskList ({tasks}) { 
+    return (
+      <ol>
+        {tasks.map((task) => (
+          <Task key={task.id} description={task.description}/>
+        ))}
+        </ol>
+    );
+  }
+
 
         function Header () {
           return <h1>Aprendiendo JSX.</h1>
@@ -83,7 +157,6 @@
           return <p>Con el correo:{mail} </p>
         }
 
-
         //ejericio 5 react: 
         function WelcomeMessage ({isLoggedIn, nombre}) {
           return (
@@ -91,6 +164,18 @@
             <h3>Bienvenido de vuelta, {nombre}</h3> 
             : <h3>Por favor, inicia sesión</h3>)
         }
+
+
+
+        
+
+
+
+
+
+
+
+
 
 
         /* ... transforma en:
