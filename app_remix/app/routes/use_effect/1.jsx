@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 botón. Utiliza useEffect para actualizar el título del documento para mostrar el número de veces
 que se ha hecho clic. */
 
-export default function Contador () {
+export default function Contador () { //creamos componente contador
 
-    const [contador, setContador] = useState(0);
+    const [contador, setContador] = useState(0); 
 
-    useEffect(() => {
-       const h1 = document.querySelector('h1');
-       h1.textContent = `Se ha hecho click un total de: ${contador} veces`
+    useEffect(() => { //con useEffect actualizaremos el componente DOM h1 tras su primer render
+       const h1 = document.querySelector('h1'); //seleccionamos el h1 del DOM: Ejercicio 1 useEffect
+       h1.textContent = `Se ha hecho click un total de: ${contador} veces` //cambiamos su textContent
        console.log(h1);
-    }, [contador]);
+    }, [contador]); //lo ejecutamos cada vez que se ejecute contador
 
-    return (
+    return ( 
         <div>
             <h1>Ejericio 1 useEffect</h1>
             <p>Contador: {contador}</p>

@@ -10,22 +10,23 @@ para manejar la creación y la limpieza del intervalo. */
 
 export default function Intervalo () {
 
-    const [intervalo, setIntervalo] = useState();
-        
+    const [intervalo, setIntervalo] = useState(0); 
+
     useEffect (() => {
-        const interval = setInterval(() => setCount(count + 1), 1000); //almacenamos intervalo: +1 cada segundo.
-        /* setIntervalo (interval);  */
+        const contador = setInterval(() => setIntervalo(intervalo + 1), 1000); //almacenamos intervalo: +1 cada segundo.
+        console.log("Montando");
 
         // Función de limpieza
         return () => {
-        clearInterval(interval);
-    };
-    }, [intervalo]);
+            console.log("Limpiando");
+        clearInterval(contador);
+        };
+    }, []); 
 
     return (
         <div>
             <h1>Ejercicio 3 useEffect</h1>
-            <p>{}</p>
+            <p>{intervalo}</p> 
         </div>
     )
 }

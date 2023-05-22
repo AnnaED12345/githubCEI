@@ -38,24 +38,26 @@ hacer la llamada a la API y muestra los datos en el componente. */
 
     export default function LlamadaApi () {
 
-        const[post, setDatos] = useState(); //su valor incial estará vacío hasta que se complete el fetch
-    
-        useEffect(() => {
-           async function FetchData () {
+        const[post, setDatos] = useState(); //su valor incial estará vacío hasta que se complete el fetch -->
+                                            //más adelante post se actualizará con los datos obtenidos del fetch
+
+        useEffect(() => { 
+           async function FetchData () { //dentro del fetch hacemos una función asincrona para poder gestionar las promesas del fetch
             const response = await fetch ("https://jsonplaceholder.typicode.com/posts");
             const datos = await response.json();
-            setDatos(datos[0]);
+            setDatos(datos[0]); //actualizamos los datos con la respuesta obtenida --> 
+                                //la respuesta es un array y trabajaremos únicamente con el primer elemento del array
            }
 
-           FetchData();
+           FetchData();//ejecutamos la función dentro de useEffect
         }, []);
     
         
-    
         return (
             <div>
                 <h1>Ejercicio 2 useEffect</h1>
-                <p>Title: {post ? post.title : "..." } </p>
+                {/* si post tiene un valor asignado se muestra la propiedad que deseamos de post, si no tiene un valor asignado se muestra "..." */}
+                <p>Title: {post ? post.title : "..." } </p> 
                 <p>Body: {post ? post.body : "..."} </p>
             </div>
         )
