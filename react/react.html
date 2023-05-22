@@ -52,7 +52,8 @@
         console.log(event.target.value); //accedemos al valor del evento 
       }
       return <input onInput={textChange} />//hacemos un callback a la función y le añadimos el evento onInput
-      
+      //evento onInput:  se utiliza para detectar cambios en el contenido de un campo de entrada (input) y llamar a una función de 
+      //devolución de llamada (onInput) cuando ocurre dicho cambio.
     }
 
 
@@ -72,7 +73,7 @@
     }
 
       //---------------- 
-        /* Ejercicio: Crear una lista de tareas
+        /* Ejercicio: Crear una lista de tareas (explicado en el documento de apuntes JS de drive)
 - Objetivo: Crear una lista de tareas pendientes en React utilizando componentes y props.
 - Instrucciones:
 - Crea un componente Task que acepte una prop task y muestre el contenido de la tarea dentro
@@ -89,7 +90,7 @@ de un elemento <li>.
     )
   }
 
-  function TaskList ({tasks}) { 
+  function TaskList ({tasks}) { //creamos un componente lista de tareas que recibe un array de tareas
     return (
       <ol>
         {tasks.map((task) => (
@@ -105,8 +106,8 @@ de un elemento <li>.
         };
 
         function CurrentDate () {
-          const date = new Date(); 
-          return <h2>Hoy es: {format(date)} </h2>
+          const date = new Date();  //creamos una variable en la que almacenamos la fecha 
+          return <h2>Hoy es: {format(date)} </h2> //el componente devuelve la fecha formateada (con la función hacemos format(la variable en la que hemos guardado la fecha))
         }
 
         //función para formatear la fecha
@@ -140,8 +141,9 @@ de un elemento <li>.
         }
 
         //ejercicio 4 react: 
+        //creamos el componente principal: el perfil del usuario
         function UserProfile ({nombre, correo}) { //Se puede usar props.name o destructuración de objetos con {}
-          return (
+          return ( //que nos devuelve su nombre y el correo
             <div>
               <UserName name = {nombre}/>
               <UserEmail mail = {correo}/>
@@ -149,29 +151,21 @@ de un elemento <li>.
           )
         }
 
-        function UserName ({name}) { 
+        function UserName ({name}) { //creamos el componente nombre
           return <h2>El nombre de usuario es: {name}</h2>
         }
 
-        function UserEmail ({mail}) {
+        function UserEmail ({mail}) { //Creamos el componente email
           return <p>Con el correo:{mail} </p>
         }
 
         //ejericio 5 react: 
-        function WelcomeMessage ({isLoggedIn, nombre}) {
-          return (
+        function WelcomeMessage ({isLoggedIn, nombre}) { //componente login
+          return ( //devuelve un condicional
             isLoggedIn ? 
             <h3>Bienvenido de vuelta, {nombre}</h3> 
             : <h3>Por favor, inicia sesión</h3>)
         }
-
-
-
-        
-
-
-
-
 
 
 
@@ -195,6 +189,8 @@ de un elemento <li>.
       const root = ReactDOM.createRoot(container); //ReactDOM
       root.render(<MyApp />); //a partir del componente MyApp se renderiza el resto de la aplicación
     </script>
+
+
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
       It slowly compiles JSX with Babel in the browser and uses a large development build of React.
@@ -205,6 +201,8 @@ de un elemento <li>.
       Read this page for adding React with JSX to an existing project:
       https://react.dev/learn/add-react-to-an-existing-project
     -->
+
+    
   </body>
 </html>
 
