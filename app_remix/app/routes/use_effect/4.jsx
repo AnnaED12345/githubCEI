@@ -13,20 +13,25 @@ export default function Intervalo () {
     const [intervalo, setIntervalo] = useState(0); 
 
     useEffect (() => {
-        const contador = setInterval(() => setIntervalo(intervalo + 1), 1000); //almacenamos intervalo: +1 cada segundo.
-        console.log("Montando");
+        /* const contador = setInterval(() => setIntervalo(intervalo + 1), 1000); */ //almacenamos intervalo: +1 cada segundo.
+        /* console.log("Montando"); */
+       const intervalID = setInterval(() => {
+            setIntervalo(intervalo + 1);
+        }, 1000);
 
-        // Función de limpieza
+        // Función de limpieza: se ejecuta antes del useEffect y a continuación el callback
         return () => {
             console.log("Limpiando");
-        clearInterval(contador);
+            clearInterval(intervalID);
         };
-    }, []); 
+    }); 
 
     return (
         <div>
             <h1>Ejercicio 3 useEffect</h1>
+            <button onClick = {() => setIntervalo (intervalo + 1)}> + 1 </button>
             <p>{intervalo}</p> 
         </div>
     )
 }
+
