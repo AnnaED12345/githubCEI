@@ -6,7 +6,7 @@ export default function AppTares () {
     return (
         <div>
             <Formulario />
-            <ListaTareas /* tareas = {ListaTareas} *//>
+            <ListaTareas/>
         </div>
     )
 }
