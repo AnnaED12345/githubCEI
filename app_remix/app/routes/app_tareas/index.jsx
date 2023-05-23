@@ -1,10 +1,12 @@
 import ListaTareas from "../../componentes_appTareas/ListaTareas";
+import Formulario from "../../componentes_appTareas/formulario";
 
 export default function AppTares () {
 
     return (
         <div>
-            <ListaTareas/>
+            <Formulario />
+            <ListaTareas /* tareas = {ListaTareas} *//>
         </div>
     )
 }

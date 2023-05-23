@@ -47,8 +47,9 @@ app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.
 
 //----------- METODO GET --------------
 app.get("/tareas", (req, res) => { //con el metodo get leemos los recursos
-    res.send(tareas); //respondemos enviando el array de tareas
+  res.send(tareas); //respondemos enviando el array de tareas
 });
+
 
 //----------- METODO GET PARA UNA URL CONCRETA --------------
 app.get('/tareas/:id', (req, res) => { //get una tarea en concreto
@@ -58,7 +59,7 @@ app.get('/tareas/:id', (req, res) => { //get una tarea en concreto
       res.status(400).send("No existe esta tarea") 
   } else {
       const tarea = tareas[tareaId];
-      res.status(200).send(tarea); //si existe, devolvemos el id de la tarea
+      res.status(200).send(tarea); //si existe, devolvemos el id de latarea
   }  
 })
 
@@ -73,6 +74,7 @@ app.post("/tareas", (req, res) => { //post para añadir tareas
       res.status(201).send(`Se ha añadido correctamente la tarea ${nuevaTarea}`);
   };
 });
+
 
 
 //----------- METODO PUT --------------
