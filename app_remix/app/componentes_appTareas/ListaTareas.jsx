@@ -2,8 +2,12 @@ import { useEffect, useState } from "react"
 
 export default function ListaTareas ({tareas}) { //creamos un componente Lista tareas que recibira como prop las tareas
 
-    const [listaTareas, setlistaTareas] = useState(); //vacío hasta que recibamos los datos del fetch
-    console.log(listaTareas);
+    const [listaTareas, setlistaTareas] = useState(); //vacío hasta que recibamos los datos del fetch 
+   /* otra opción es en useState añadir como valor inicial un [] vacío por que asi no hace falta hacer el condicional en .map 
+    por que en el primer render detectara un array y podrá actualizarl, si no, el valor es undefined y no detecta ningun
+    array de primeras que poder actualizar. */ 
+
+    /* console.log(listaTareas); */
 
     //usamos use effect para hacer un fetch para optimizar la aplicación y que no se haga una petición cada vez que se renderiza
     useEffect (() => {
@@ -23,11 +27,11 @@ export default function ListaTareas ({tareas}) { //creamos un componente Lista t
             <p>Tareas añadidas:</p>
 
             {/* para mostrar la lista de tareas, trabajaremos con un condicional: (explicado abajo) */}
-            {listaTareas ? ( //hemos recibido ya los datos de la lista de tareas? 
-                listaTareas.map((tarea) => ( //si es true, responde con un array de lista de tareas
-                    <li key={tarea}>{tarea}</li> //que cuente con un elemento li con el primer elemento del array y la key también será la propia tarea ya que no tenemos identificador y el nombre de la tarea en si es única 
+            <ol>{listaTareas ? ( //hemos recibido ya los datos de la lista de tareas? 
+                listaTareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
+                    <li key={index}>{tarea}</li> //que cuente con un elemento li con el primer elemento del array y la key también será la propia tarea ya que no tenemos identificador y el nombre de la tarea en si es única 
                 ))) : (<p>Cargando tareas...</p> //si es false, devolvemos "cargando tareas"
-            )}
+            )}</ol>
         </div>
     )
 }
