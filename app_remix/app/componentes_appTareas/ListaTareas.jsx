@@ -17,7 +17,6 @@ export default function ListaTareas ({tareas}) { //creamos un componente Lista t
             setlistaTareas(datos); //y actualizamos los datos con la respuesta obtenida 
         }
 
-        
         FetchData ();
         
     }, []); //no agregamos dependencias ya que queremos que se haga el fetch únicamente una vez
@@ -27,11 +26,13 @@ export default function ListaTareas ({tareas}) { //creamos un componente Lista t
             <p>Tareas añadidas:</p>
 
             {/* para mostrar la lista de tareas, trabajaremos con un condicional: (explicado abajo) */}
-            <ol>{listaTareas ? ( //hemos recibido ya los datos de la lista de tareas? 
+            <ol> 
+                {listaTareas ? ( //hemos recibido ya los datos de la lista de tareas? 
                 listaTareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
-                    <li key={index}>{tarea}</li> //que cuente con un elemento li con el primer elemento del array y la key también será la propia tarea ya que no tenemos identificador y el nombre de la tarea en si es única 
+                    <li key={index}> {tarea} </li> //que cuente con un elemento li con el primer elemento del array y la key también será la propia tarea ya que no tenemos identificador y el nombre de la tarea en si es única 
                 ))) : (<p>Cargando tareas...</p> //si es false, devolvemos "cargando tareas"
-            )}</ol>
+            )} 
+            </ol>
         </div>
     )
 }
