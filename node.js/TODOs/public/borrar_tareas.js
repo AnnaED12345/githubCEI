@@ -127,7 +127,7 @@ const borrarTareas = (event, id) => {
           /* const tareaLista = document.querySelectorAll('li'); */
           /* Debemos aplicar event.target.parentElement sobre el evento y no sobre la variable del boton por que de 
           esta forma, el event listener sabrá a qué botón se ha hecho clic y qué tarea debe ser eliminada. */
-        cargarTareas();
+        cargarTareas(); //revisar diferencia con o sin ejecutar la función
         const tareaSeleccionada = event.target.parentElement; // el padre del botón es el elemento li.
         console.log(tareaSeleccionada);
         tareaSeleccionada.remove(); //se borra el elemento

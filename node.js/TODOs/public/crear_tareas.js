@@ -21,7 +21,7 @@ const crearTarea = function (event) {
 
     const tarea = document.getElementById("tareaID").value;
 
-    const body = {tarea: tarea}; //en el body pasamos como objeto la estructura: pedimos un objeto que pide la propiedad tarea que recoge el valor de tarea tareaID.value
+    const body = {tarea: tarea}; //en el body pasamos como objeto la estructura:  un objeto que pide la propiedad tarea que recoge el valor de tarea tareaID.value
 
     const post = fetch ("/tareas", { //options
         method: 'POST', //por defecto método GET --> cambiamos a POST
