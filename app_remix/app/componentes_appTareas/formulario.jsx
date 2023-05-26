@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function Formulario () {
 
     const [tareaCreada, setTareaCreada] = useState("");
+    console.log(tareaCreada);
 
     useEffect (() => {
     //queremos que la petición se ejecute si hay una tarea creada por lo tanto debemos trabajar con un condicional dentro del useEffect: 
@@ -29,7 +30,7 @@ export default function Formulario () {
     //FUNCIÓN PARA EL BOTÓN CREAR TAREA
     function crearTarea (event) {
         event.preventDefault();
-        setTareaCreada();
+        setTareaCreada(nuevaTarea);
     }
         //windos.location.reload();
    

@@ -1,19 +1,36 @@
 import { useEffect, useState } from "react"
+import DialogoBorrar from '../componentes_appTareas'
 
-export default function ListaTareas ({tareas}) { //creamos un componente Lista tareas que recibira como prop las tareas
+export default function ListaTareas ({ tareas }) { //creamos un componente Lista tareas que recibira como prop las tareas
 
     return (
-        <div>
+        <div >
             <p>Tareas añadidas:</p>
 
             {/* para mostrar la lista de tareas, trabajaremos con un condicional: (explicado abajo) */}
-            <ol> 
+            {/* <ol> 
                 {tareas ? ( //hemos recibido ya los datos de la lista de tareas? 
                 tareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
                     <li key={index}> {tarea} </li> //que cuente con un elemento li con el primer elemento del array y la key también será la propia tarea ya que no tenemos identificador y el nombre de la tarea en si es única 
                 ))) : (<p>Cargando tareas...</p> //si es false, devolvemos "cargando tareas"
             )} 
-            </ol>
+            </ol> */}
+
+            <div id="cajaTareas">
+                {/* Opción 2: determinamos el valor por defecto como un array vacío --> explicado en index.js (componente padre) */}
+                <ol>
+                {tareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
+                        <li key={index}> {tarea}
+                            <button 
+                            className="btnBorrar" 
+                            onClick = {(event) => {
+                                event.preventDefault();
+                                DialogoBorrar();
+                            }} > 
+                            </button>
+                        </li> ))}
+                </ol>
+            </div>
         </div>
     )
 }

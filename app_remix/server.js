@@ -7,6 +7,8 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser"); //añadimos body-parser
 
+//también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
+
 installGlobals();
 
 const BUILD_DIR = path.join(process.cwd(), "build");
