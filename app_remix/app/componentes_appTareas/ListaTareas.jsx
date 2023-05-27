@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react"
-import DialogoBorrar from '../componentes_appTareas'
+import DialogoBorrar from "./dialogoBorrar"
+
 
 export default function ListaTareas ({ tareas }) { //creamos un componente Lista tareas que recibira como prop las tareas
+    
+    const [mostrarDialogoBorrar, setMostrarDialogo] = useState(false);
+
+    const mostrarDialogo = () => {
+        setMostrarDialogo(true);
+    }
 
     return (
         <div >
@@ -21,13 +28,9 @@ export default function ListaTareas ({ tareas }) { //creamos un componente Lista
                 <ol>
                 {tareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
                         <li key={index}> {tarea}
-                            <button 
-                            className="btnBorrar" 
-                            onClick = {(event) => {
-                                event.preventDefault();
-                                DialogoBorrar();
-                            }} > 
-                            </button>
+                        <button onClick={mostrarDialogoBorrar}>Eliminar</button>
+                        <DialogoBorrar mostrarDialogo={mostrarDialogo} setMostrarDialogo={setMostrarDialogo} />
+
                         </li> ))}
                 </ol>
             </div>
