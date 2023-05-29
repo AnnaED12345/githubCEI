@@ -44,6 +44,7 @@ export default function ListaTareas2 ({ tareas, cargarTareas}) { //creamos un co
 
 const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nueva actualizada para acutalizarla posteriormente con useState
 
+
     const onSubmitTarea = (id) => {
         const body = {tarea: tareaActualizada};
         const options = {
@@ -58,8 +59,6 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
          .then((res) => {  
             if (res.ok) { 
               cargarTareas();
-              console.log(tareaActualizada)
-              
       
           } else {
               console.log("Error: Tienes que añadir una tarea");
@@ -101,16 +100,16 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
 
                         <dialog id="editar_dialogo">
                             <form action=""
-                            onClick={onSubmitTarea(index)}>
+                            onSubmit={() => onSubmitTarea(index)}>
                                 <input 
-                                class="editar_texto" 
+                                className="editar_texto" 
                                 type="text" 
                                 placeholder="Actualiza tu tarea..." 
                                 name="tarea_actualizada" 
                                 id="tarea_actualizadaID"
                                 onChange={(event) => setTareaActualizada(event.target.value)}>
                                 </input>
-                            </form>
+                            
                             
                             <input 
                             id="btnOk" 
@@ -124,6 +123,7 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
                             value="Cancelar"
                             onClick={onCancelarEditar}>
                             </input>
+                            </form>
                         </dialog>
 
 

@@ -40,22 +40,11 @@ app.use(morgan("tiny"));
 
 /* const bodyParser = require("body-parser"); */
 
+const tareas = ["comprar", "limpiar", "correr"];
+
 
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 /* app.use(express.static('public')); // */ //ya esta definido
-
-//IMPORTAMOS PRISMACLIENT
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
-
-//creamos unas tareas por defecto en el servidor: 
-prisma.tarea.create ({
-    data: {
-        tarea: "TAREA 1",
-    }
-}). then(tarea => {
-    console.log(tarea);
-}) 
 
 
 //----------- METODO GET --------------
