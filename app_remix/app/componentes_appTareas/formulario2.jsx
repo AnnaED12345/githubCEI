@@ -18,7 +18,7 @@ export default function Formulario2 ({cargarTareas}) {
             if (post.ok) { 
                 cargarTareas();
                 setTareaCreada("");
-                console.log(tareaCreada);
+                /* console.log(tareaCreada); */
                 
               } else { 
 

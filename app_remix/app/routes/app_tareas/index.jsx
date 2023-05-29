@@ -5,6 +5,8 @@ import Formulario2 from "../../componentes_appTareas/formulario2";
 
 import { useState } from "react";
 import { useEffect } from "react";
+import DialogoBorrar from "../../componentes_appTareas/dialogoBorrar";
+import ListaTareas2 from "../../componentes_appTareas/listaTareas2";
 
 
 export default function AppTares () {
@@ -33,7 +35,8 @@ export default function AppTares () {
     return (
         <div>
             <Formulario2 cargarTareas={cargarTareas} /> {/*pasamos la función con las props*/}
-            <ListaTareas tareas = {listaTareas} cargarTareas={cargarTareas} /> {/* trabajamos la creación de elementos li en ListaTareasss */}
+            <ListaTareas2 tareas = {listaTareas} cargarTareas={cargarTareas} /> {/* trabajamos la creación de elementos li en ListaTareasss */}
+
         </div>
     )
 }

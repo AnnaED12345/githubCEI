@@ -1,13 +1,27 @@
-import { useEffect, useState } from "react"
+
+
+import { useState } from "react"
 import DialogoBorrar from "./dialogoBorrar"
+import ModalBorrar from "./modalBorrar";
 
 
 export default function ListaTareas ({ tareas }) { //creamos un componente Lista tareas que recibira como prop las tareas
     
-    const [mostrarDialogoBorrar, setMostrarDialogo] = useState(false);
+    // Podemos usar booleanos para gestionar la visibilidad del elemento: por defecto no aparecerá. 
+    const [mostrarModal, setMostrarModal] = useState(false); 
 
-    const mostrarDialogo = () => {
+    //1 opción: crear 2 funciones, una para abrir dialogo y otra para cerrar dialog
+    /* const abrirDialogo = () => { //creamos una función para abrir el diálogo
         setMostrarDialogo(true);
+      };
+
+    const cerrarDialogo = () => { 
+        setMostrarDialogo(false);
+    } */
+
+    //2 opción: crear una función con un condicional: si el diálogo está abierto se establece el valor contrario. Si es true pasa a !false y viceversa
+    const cambiarModal = () => {
+        setMostrarModal(!mostrarModal)
     }
 
     return (
@@ -28,8 +42,13 @@ export default function ListaTareas ({ tareas }) { //creamos un componente Lista
                 <ol>
                 {tareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
                         <li key={index}> {tarea}
-                        <button onClick={mostrarDialogoBorrar}>Eliminar</button>
-                        <DialogoBorrar mostrarDialogo={mostrarDialogo} setMostrarDialogo={setMostrarDialogo} />
+
+                        <button className="btnBorrar" onClick = {cambiarModal}>Eliminar</button> {/* creamos un boton para abrir el modal */}
+
+                        { mostrarModal && <ModalBorrar/>} {/* e indicamos con el operador &&: 
+                        Si la expresión antes del && es verdadera, se renderizará el elemento que le sigue. 
+                        Si la expresión es falsa, no se renderizará nada. */}
+                        
 
                         </li> ))}
                 </ol>
