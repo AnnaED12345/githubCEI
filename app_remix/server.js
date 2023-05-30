@@ -71,18 +71,27 @@ app.get('/tareas/:id', (req, res) => { //get una tarea en concreto
 
 //----------- METODO POST --------------
 app.post("/tareas", (req, res) => { //post para añadir tareas 
-  
+  const nuevaTarea = req.body.tarea; //almacenamos en una varible los datos del body. 
 
-  /* prisma.tarea.create ({
+  prisma.tarea.create ({
     data: {
-        tarea: "TAREA 01",
+      tarea: nuevaTarea //en el modelo vamos a indicar que el campo a rellenar de tarea se va a completar con la información recibida en el body
     }
-}). then(tarea => {
-    console.log(tarea);
-})  */
+  })
+    .then(tareaCreada => { //obtenemos la tarea creada
+      console.log(tareaCreada);
+
+      if (!tareaCreada || tareaCreada === "") {
+        res.status(400).send("Tienes que añadir una tarea") 
+      } else {
+        res.status(201).send(`Se ha añadido correctamente la tarea ${nuevaTarea}`);
+      }
+
+    })
+  })
 
 
-  if (req.body.tarea === ""){ //si no se añade ninguna tarea, da error
+/*   if (req.body.tarea === ""){ //si no se añade ninguna tarea, da error
       res.status(400).send("Tienes que añadir una tarea") 
   }
   else{ //si se añade 
@@ -90,7 +99,7 @@ app.post("/tareas", (req, res) => { //post para añadir tareas
       let nuevaTarea = req.body.tarea; //actualizamos el array = 
       res.status(201).send(`Se ha añadido correctamente la tarea ${nuevaTarea}`);
   };
-});
+}); */
 
 
 
