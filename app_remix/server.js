@@ -51,7 +51,7 @@ const prisma = new PrismaClient()
 //creamos unas tareas por defecto en el servidor: 
 prisma.tarea.create ({
     data: {
-        tarea: "TAREA 1",
+        tarea: "TAREA 01",
     }
 }). then(tarea => {
     console.log(tarea);
@@ -60,7 +60,9 @@ prisma.tarea.create ({
 
 //----------- METODO GET --------------
 app.get("/tareas", (req, res) => { //con el metodo get leemos los recursos
+  prisma.tarea.findMany().then(tareas => { //leer todas las tareas
   res.send(tareas); //respondemos enviando el array de tareas
+  })
 });
 
 
