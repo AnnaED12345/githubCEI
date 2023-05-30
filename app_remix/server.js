@@ -6,6 +6,8 @@ const compression = require("compression");
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser"); //añadimos body-parser
+const { PrismaClient } = require ('@prisma/client');
+const prisma = new PrismaClient()
 
 //también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
 
@@ -44,25 +46,14 @@ app.use(morgan("tiny"));
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 /* app.use(express.static('public')); // */ //ya esta definido
 
-//IMPORTAMOS PRISMACLIENT
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
-
-//creamos unas tareas por defecto en el servidor: 
-prisma.tarea.create ({
-    data: {
-        tarea: "TAREA 01",
-    }
-}). then(tarea => {
-    console.log(tarea);
-}) 
-
+//Importante: recuerda importar los módulos: en este caso PrismaClient
 
 //----------- METODO GET --------------
 app.get("/tareas", (req, res) => { //con el metodo get leemos los recursos
-  prisma.tarea.findMany().then(tareas => { //leer todas las tareas
+  prisma.tarea.findMany().then(tareas => { //le decimos a prisma que desde mongoDB lea todas las tareas
+  console.log(tareas);
   res.send(tareas); //respondemos enviando el array de tareas
-  })
+})
 });
 
 
@@ -80,6 +71,17 @@ app.get('/tareas/:id', (req, res) => { //get una tarea en concreto
 
 //----------- METODO POST --------------
 app.post("/tareas", (req, res) => { //post para añadir tareas 
+  
+
+  /* prisma.tarea.create ({
+    data: {
+        tarea: "TAREA 01",
+    }
+}). then(tarea => {
+    console.log(tarea);
+})  */
+
+
   if (req.body.tarea === ""){ //si no se añade ninguna tarea, da error
       res.status(400).send("Tienes que añadir una tarea") 
   }

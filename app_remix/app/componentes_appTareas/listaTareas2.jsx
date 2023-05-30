@@ -76,7 +76,7 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
                 {/* Opción 2: determinamos el valor por defecto como un array vacío --> explicado en index.js (componente padre) */}
                 <ol>
                 {tareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
-                        <li key={index}> {tarea}
+                        <li key={tarea.index}> {tarea.tarea}
 
                         {/* <button className="btnBorrar"
                         onClick={() => borrarTarea(index)}>Eliminar</button>  */}{/* creamos un boton para abrir el modal */} 

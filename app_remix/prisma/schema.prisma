@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//Definimos un modelo para nuestras tareas: 
+//El modelo en sí es el documento en MongoDB. En este caso Tarea es la "colección", id y tarea es el campo de la propiedad y String es el campo a rellenar. 
+//Los campos es dónde iría la información que queramos almacenar de nuestra colección. 
+
 model Tarea {
   id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
   tarea String 
