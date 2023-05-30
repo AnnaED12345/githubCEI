@@ -17,5 +17,14 @@ datasource db {
 model Tarea {
   id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
   tarea String 
+  //usuario User @relation(fields: [usuarioID], references: [id])
+}
+
+//Creamos el modelo para Usuarios y lo relacionamos con las tareas.
+//1:N --> Un usuario podrá tener muchas tareas, pero una tarea solo podrá estar relacionada con un único usuario 
+model Usuarios {
+  id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
+  email String
+  //tareas tarea[]
 }
 
