@@ -76,7 +76,7 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
                 {/* Opción 2: determinamos el valor por defecto como un array vacío --> explicado en index.js (componente padre) */}
                 <ol>
                 {tareas.map((tarea, index) => ( //si es true, responde con un array de lista de tareas
-                        <li key={index}> {tarea}{index}
+                        <li key={tarea.id}> {tarea.tarea}
 
                         {/* <button className="btnBorrar"
                         onClick={() => borrarTarea(index)}>Eliminar</button>  */}{/* creamos un boton para abrir el modal */} 
@@ -87,7 +87,7 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
                         <dialog id="borrar_dialogo">
                             <p>¿Estás seguro de que deseas borrar esta tarea?</p>
                             <button id="confirmar_borrar"
-                            onClick= {() => onConfirmarBorrar(index)}
+                            onClick= {() => onConfirmarBorrar(tarea.index)}
                             >Borrar</button>
                             <button id="cancelar_borrar"
                             onClick={onCancelarBorrar}
@@ -96,7 +96,7 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
 
 
                         <button className="btnEditar"
-                        onClick={() => mostrarDialogoEditar(index)}>Editar</button>
+                        onClick={() => mostrarDialogoEditar(tarea.index)}>Editar</button>
 
                         <dialog id={`editar_dialogo_${index}`}>
                             <form action=""

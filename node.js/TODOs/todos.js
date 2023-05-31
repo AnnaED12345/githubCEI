@@ -70,7 +70,7 @@ app.put("/tareas/:id", (req, res) => { //put para actualizar las tareas
         }  
 });
 
-
+ 
 //----------- METODO DELETE --------------
 app.delete("/tareas/:id", (req, res) => { //elimina tareas
     //parseInt() --> convierte una cadena de caracteres a un número entero. 
