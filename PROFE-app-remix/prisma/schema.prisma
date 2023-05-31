@@ -10,7 +10,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//----- @db.ObjectId
+ //Se utiliza para indicar que los campos correspondientes son de tipo String y representan identificadores únicos en formato de 
+ //ObjectId de la base de datos.
+
+
+//Definimos un modelo para nuestras tareas: 
+//El modelo en sí es el documento en MongoDB. En este caso Tarea es la "colección", id y tarea es el campo de la propiedad y String es el campo a rellenar. 
+//Los campos es dónde iría la información que queramos almacenar de nuestra colección. 
+
 model Tarea {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  descripcion String
+  id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
+  descripcion String  
+  usuario Usuario @relation(fields: [usuarioID], references: [id]) //a la tarea se le asocia un usuario y usamos el campo UsuarioID para un id particular para esa realción tarea-usuario, y lo realcionamos con el id del usuario
+  usuarioID String @db.ObjectId //el atribudo ObjetoId (explicado arriba)
+  //usuarioID es un foreignKey: este campo no existe en la base de datos, es el campo que hace la relación
+}
+
+
+//Creamos el modelo para Usuarios y lo relacionamos con las tareas.
+//1:N --> Un usuario podrá tener muchas tareas, pero una tarea solo podrá estar relacionada con un único usuario 
+model Usuario {
+  id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
+  nombre String 
+  tareas Tarea[] //el usuario tendrá un campo de tarea que recibirá muchas tareas[]
 }

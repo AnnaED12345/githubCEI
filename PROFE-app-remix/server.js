@@ -7,6 +7,7 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const rutasTareas = require("./server/tareas");
+const rutasUsuarios = require("./server/usuarios");
 
 installGlobals();
 
@@ -25,7 +26,9 @@ app.use(
 app.use(express.static("public", { maxAge: "1h" }));
 app.use(morgan("tiny"));
 
+//Ejecutar imports rutas 
 rutasTareas(app);
+rutasUsuarios(app);
 
 // Servidor Remix
 app.all(
