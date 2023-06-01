@@ -2,7 +2,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 
-
 function rutasUsuarios (app) {
 
     //Queremos recibir todos los usuarios en ruta /users:
@@ -33,18 +32,21 @@ function rutasUsuarios (app) {
 })
 
      app.post("/users/:user_id/tasks", (req, res) => {
+        const nuevaTarea = req.body.descripcion
+        const usuarioID = req.params.user_id
+
         prisma.tarea.create ({
             data: {
-                descripcion: "tarea 02 - Julián",
+                descripcion: nuevaTarea,
                 
                 usuario: { //indicamos el campo de usuario
                     connect: { //y conectamos la creación de la tarea
-                        id: "64772a930616bfd75c9fce2f"
+                        id: usuarioID
                     }
               },
             }
                 }).then(nuevaTarea => {
-                res.send(nuevaTarea);
+                res.status(201).send(nuevaTarea);
             }).catch(error => {
                 res.status(400).send(error)
             } )

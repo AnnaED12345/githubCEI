@@ -23,11 +23,11 @@ const prisma = new PrismaClient();
 //Crear tarea para usuario
 /* prisma.tarea.create ({
     data: {
-        descripcion: "tarea 01 - Lucas",
+        descripcion: "tarea 02 - Julián",
         
         usuario: { //indicamos el campo de usuario
             connect: { //y conectamos la creación de la tarea
-                id: "64772af746ada35ae14eddab"
+                id: "64772a930616bfd75c9fce2f"
             }
       },
     }
@@ -36,7 +36,7 @@ const prisma = new PrismaClient();
     }) */
 
 //ruta /users/:user_id para encontrar un id
-prisma.usuario.findUnique({
+/* prisma.usuario.findUnique({
     where: {
         id: "64772a930616bfd75c9fce2f" //id del usuario
     },
@@ -45,7 +45,7 @@ prisma.usuario.findUnique({
     }
 }).then((user) => {
     console.log(user);
-})
+}) */
 
 
 //eliminar tarea: 
@@ -56,6 +56,22 @@ prisma.usuario.findUnique({
 }).then(tarea => {
         console.log('Tarea eliminada', tarea);
     });  */
+
+
+//actualizar tarea de usuario : /users/:user_id/tasks/:tasks_id
+prisma.tarea.update({
+    where: {
+        id: '64787992a3253fa6915450cd' //id de la tarea
+        },
+        data: {
+             descripcion: 'tarea 01 modificada - Lucas'
+        }
+    }).then(tarea => {
+   console.log('Tarea modificada', tarea);
+});
+
+
+
 
 
 

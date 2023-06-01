@@ -1,10 +1,4 @@
-// ---------------------- SERVIDOR TAREAS -----------------------------
 
-//Primero revisar si todos los módulos que necesitamos están importados (en este caso hace falta importar body-parser)
-/* const express = require("express");  */
-/* const app = express(); */ // const app ya está definido
-
-/* const bodyParser = require("body-parser"); */
 
 const tareas = ["comprar", "limpiar", "correr"];
 

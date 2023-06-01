@@ -6,8 +6,9 @@ const compression = require("compression");
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser"); //añadimos body-parser
-const { PrismaClient } = require ('@prisma/client');
-const prisma = new PrismaClient()
+const rutasTareas = require ("./server/tareas");
+const rutasUsuarios = require ("./server/usuarios");
+
 
 //también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
 
@@ -46,93 +47,8 @@ app.use(morgan("tiny"));
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 /* app.use(express.static('public')); // */ //ya esta definido
 
-//Importante: recuerda importar los módulos: en este caso PrismaClient
-
-
-//----------- METODO GET --------------
-app.get("/tareas", (req, res) => { //con el metodo get leemos los recursos
-  prisma.tarea.findMany().then(tareas => { //le decimos a prisma que desde mongoDB lea todas las tareas
-  console.log(tareas);
-  res.send(tareas); //respondemos enviando el array de tareas
-})
-});
-
-
-//----------- METODO GET PARA UNA URL CONCRETA --------------
-//explicado por que usamos if en este caso: SESION 30 REPASAR
-app.get('/tareas/:id', (req, res) => { //get una tarea en concreto
-  const tareaID = req.params.id 
-
-  prisma.tarea.findUnique({  
-    where: {
-      id: tareaID
-    }
-  })
-  .then(tarea => {
-    if (tarea) { 
-      res.send(tarea);
-    }else {
-      res.status(400).send("ERROR: La tarea no existe")
-    } 
-  }).catch(error => {
-    res.status(400).send(error)
-  }) 
-})
-
-
-//----------- METODO POST --------------
-app.post("/tareas", (req, res) => { //post para añadir tareas 
-  const nuevaTarea = req.body.tarea; //almacenamos en una varible los datos del body. 
-
-  prisma.tarea.create ({
-    data: {
-      tarea: nuevaTarea //en el modelo vamos a indicar que el campo a rellenar de tarea se va a completar con la información recibida en el body
-    }
-  })
-    .then(tareaCreada => { //obtenemos la tarea creada
-        res.status(201).send(`Se ha añadido correctamente la tarea ${nuevaTarea}`);
-      })
-      .catch(error => {
-        res.status(500).send("Tienes que añadir una tarea") 
-      })  
-    })
- 
-
-//----------- METODO PUT --------------
-app.put("/tareas/:id", (req, res) => { //put para actualizar las tareas
-  const tareaID = req.params.id //nos cargamos el parseInt por que el id no es un número, es un string
-  const nuevaTarea = req.body.tarea
-
-  prisma.tarea.update ({
-    where: {
-      id: tareaID //buscamos el id que recogemos de req.params.id
-    }, 
-    data: {
-      tarea: nuevaTarea //sustituimos por la nueva tarea del body (req.body.tarea)
-    }
-  })
-  .then (tareaActualizada => { //obtenemos la tarea actualizada
-      res.status(201).send(`Se ha actualizado la tarea ${nuevaTarea}`);
-    }
-  ).catch (error => {
-    res.status(500).send(error)
-  })
-})
-
-//----------- METODO DELETE --------------
-app.delete("/tareas/:id", (req, res) => { //elimina tareas
-  const tareaID = req.params.id
-
-  prisma.tarea.delete({
-    where: {
-      id: tareaID
-    }
-  }).then(tareaEliminada => {
-    res.send(`Se ha eliminado la tarea ${tareaID}`)
-  }) .catch (error => {
-    res.status(500).send("No se ha podido eliminar la tarea")
-  })
-})
+rutasTareas(app);
+rutasUsuarios(app);
 
 
 app.all(
