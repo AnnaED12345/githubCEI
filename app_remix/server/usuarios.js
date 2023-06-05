@@ -28,7 +28,9 @@ function rutasUsuarios (app) {
         }
     }).then((user) => {
        res.send(user);
-    })
+    }).catch(error => {
+        res.status(400).send(error)
+    } )
 })
 
      app.post("/users/:user_id/tasks", (req, res) => {

@@ -47,7 +47,7 @@ app.use(morgan("tiny"));
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 /* app.use(express.static('public')); // */ //ya esta definido
 
-rutasTareas(app);
+/* rutasTareas(app); */
 rutasUsuarios(app);
 
 
