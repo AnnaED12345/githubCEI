@@ -1,6 +1,7 @@
+
 import { useRef, useState } from "react";
 
-export default function Formulario2 ({cargarTareas}) { 
+export default function Formulario ({cargarTareas, user_id}) { 
     
     const [tareaCreada, setTareaCreada] = useState(""); //definimos una variable que actualizaremos con los datos recibidos del fetch
     const [error, setError] = useState(""); //para actualizar el valor del error
@@ -8,9 +9,9 @@ export default function Formulario2 ({cargarTareas}) {
     async function submitTarea (event) { //cuando se haga un submit en el input::
         event.preventDefault();
 
-        const post = await fetch("/tareas", { //se realizará un fetch con el método post
+        const post = await fetch(`/users/${user_id}/tasks`, { //se realizará un fetch con el método post
             method: "POST",
-            body: JSON.stringify({ tarea: tareaCreada }), //body: tarea recibirá el valor de tarea creada
+            body: JSON.stringify({ descripcion: tareaCreada }), //body: tarea recibirá el valor de tarea creada
             headers: {
               "Content-Type": "application/json",
             }})

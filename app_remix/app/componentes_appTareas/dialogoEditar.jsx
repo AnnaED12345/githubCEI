@@ -1,5 +1,5 @@
 
-export default function DialogoEditar({ onSubmitTarea, onCancelarEditar }) {
+export default function DialogoEditar({ setTareaActualizada, onSubmitTarea, onCancelarEditar }) {
   
     return (
         <dialog id="editar_dialogo">
