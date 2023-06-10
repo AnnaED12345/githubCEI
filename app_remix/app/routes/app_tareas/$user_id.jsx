@@ -12,6 +12,7 @@ export default function AppTares () {
     const {user_id} = useParams(); //sacamos la varible en ruta. Esto nos sirve para saber que usuario está seleccionado
     const [usuario, setUsuario] = useState();
 
+
     const [listaTareas, setlistaTareas] = useState([]); //vacío hasta que recibamos los datos del fetch 
    /* otra opción es en useState añadir como valor inicial un [] vacío por que asi no hace falta hacer el condicional en .map 
     por que en el primer render detectara un array y podrá actualizarl, si no, el valor es undefined y no detecta ningun
@@ -46,7 +47,7 @@ export default function AppTares () {
     return (
         <div>
             { usuario ? <h1>Bienvenido {usuario.nombre} </h1> : <h1>Cargando...</h1>}
-            {/* <Formulario cargarTareas={cargarTareas} /> */} {/*pasamos la función con las props*/}
+            <Formulario cargarTareas={cargarTareas} user_id={user_id}/> {/*pasamos la función con las props*/}
             <ListaTareas2 tareas = {listaTareas} cargarTareas={cargarTareas} /> {/* trabajamos la creación de elementos li en ListaTareasss */}
 
         </div>
