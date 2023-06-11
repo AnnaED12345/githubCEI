@@ -12,7 +12,7 @@ export default function DialogoEditar({ setTareaActualizada, onSubmitTarea, onCa
                 id="tarea_actualizadaID"
                 onChange={(event) => setTareaActualizada(event.target.value)}
                 />
-
+                <div>
                 <input id="btnOk" type="submit" value="Aceptar" />
 
                 <input
@@ -21,6 +21,7 @@ export default function DialogoEditar({ setTareaActualizada, onSubmitTarea, onCa
                 value="Cancelar"
                 onClick={onCancelarEditar}
                 />
+                </div>
             </form>
         </dialog>
   );
