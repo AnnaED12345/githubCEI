@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { LangContext, useLangCookie } from "../../hooks/useLangCookie";//importamos el custom hook
 
 export default function SeleccionaUsuario () {
 
-    const [usuarios, setUsuarios] = useState([])
+    const lang = useContext(LangContext);
+
+
+    const [usuarios, setUsuarios] = useState([]);
+    
 
     useEffect (() => {
         fetch("/users")
@@ -13,7 +18,7 @@ export default function SeleccionaUsuario () {
 
     return (
         <div>
-            <h1>Selecciona tu usuario</h1>
+            <h1>{lang ==="es"? 'Selecciona tu usuario' : 'Select your user'}</h1>
            { usuarios.map(usuario => 
             <div>
             <Link to={`/app_tareas/${usuario.id}`}>{usuario.nombre}</Link>

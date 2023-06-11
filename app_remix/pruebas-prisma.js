@@ -6,9 +6,14 @@ const prisma = new PrismaClient()
 //crear usuario
 /* prisma.usuario.createMany ({
     data:[ 
-        { nombre: "Lucas" },
-        { nombre: "María" },
-        { nombre: "Juan" }
+        { nombre: "Lucas",
+        password: "12345" },
+
+        { nombre: "María",
+        password: "12345"},
+
+        { nombre: "Juan",
+        password: "12345"}
     ]
     
         }). then(usuario => {
@@ -18,7 +23,7 @@ const prisma = new PrismaClient()
 //ruta /users para ver todos los usuarios
 prisma.usuario.findMany({
     include: {
-        tareas:false
+        tareas:false,
         }
     }).then(usuarios => {
     console.log(usuarios);

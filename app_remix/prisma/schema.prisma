@@ -56,6 +56,7 @@ model Tarea {
 
 model Usuario {
   id Int @id @default(autoincrement()) 
-  nombre String 
+  nombre String @unique
+  password String
   tareas Tarea[]
 }

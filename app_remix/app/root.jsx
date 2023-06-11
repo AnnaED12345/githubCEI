@@ -8,12 +8,18 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { LangContext, useLangCookie } from "./hooks/useLangCookie";
+import { useContext } from "react";
 
 export const links = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export default function App() {
+
+  const [lang, setLang] = useLangCookie();
+  const langFromContext = useContext(LangContext);
+
   return (
     <html lang="en">
       <head>
@@ -23,10 +29,17 @@ export default function App() {
         <Links />
       </head>
       <body>
+      <LangContext.Provider value={lang}>
+      <select 
+      onInput={(event) => setLang(event.target.value)}>
+          <option value="es">{lang === "es"? 'Español' : 'Spanish'}</option>
+          <option value="en">{lang === "en"? 'English' : 'Inglés'}</option>
+        </select>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        </LangContext.Provider>
       </body>
     </html>
   );

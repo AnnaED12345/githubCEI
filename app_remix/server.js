@@ -9,6 +9,9 @@ const bodyParser = require("body-parser"); //añadimos body-parser
 const rutasTareas = require ("./server/tareas");
 const rutasUsuarios = require ("./server/usuarios");
 const cookieParser = require('cookie-parser'); //modulo para el middleware de cookies
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 //también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
 
@@ -36,6 +39,40 @@ app.use(express.static("public", { maxAge: "1h" }));
 app.use(morgan("tiny"));
 
 app.use(cookieParser());//middleware cookies
+
+app.use(
+  session({ //middleware para modulo express-session
+  secret: 'secret-key',
+  resave: false,
+  saveUninitialized: false
+  }));
+
+
+app.use(passport.initialize()); //middleware passport
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+// Aquí debes buscar al usuario por su id en tu base de datos
+  rutasUsuarios(id).then(user => done(null, user)).catch((error) => done(error));
+});
+
+
+passport.use( //middleware passport-local
+  new LocalStrategy(function (id, password, done) {
+  prisma.usuario
+  .findUnique({ where: { id } })
+  .then((user) => {
+  if (!user) return done(null, false);
+  if (user.password !== password) return done(null, false);
+  return done(null, user);
+  })
+  .catch((err) => done(err));
+  })
+  );
+
 
 // ---------------------- SERVIDOR TAREAS -----------------------------
 

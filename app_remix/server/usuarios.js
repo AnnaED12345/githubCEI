@@ -10,10 +10,17 @@ const prisma = new PrismaClient();
     next();
 } */
 
-function rutasUsuarios (app) {
+function rutasUsuarios (app, id) {
 
     //Queremos recibir todos los usuarios en ruta /users:
     app.get("/users", (req, res) => {
+
+        //explicado en /ejercicios-cookies.js
+        /* res.cookie("ejercicio", 1)
+        res.cookie("ejercicio-lectura", 2, { maxAge: 60 * 1000}) 
+        res.cookie("ejercicio", 3, { maxAge: 3600 * 1000}) 
+        res.clearCookie("ejercicio"); */
+
         prisma.usuario.findMany({
             include: {
                 tareas:false
