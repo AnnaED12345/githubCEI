@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser"); //añadimos body-parser
 const rutasTareas = require ("./server/tareas");
 const rutasUsuarios = require ("./server/usuarios");
-
+const cookieParser = require('cookie-parser'); //modulo para el middleware de cookies
 
 //también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
 
@@ -34,6 +34,8 @@ app.use(
 app.use(express.static("public", { maxAge: "1h" }));
 
 app.use(morgan("tiny"));
+
+app.use(cookieParser());//middleware cookies
 
 // ---------------------- SERVIDOR TAREAS -----------------------------
 
