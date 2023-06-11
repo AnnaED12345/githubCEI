@@ -1,6 +1,14 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+/* function parseParamsMiddleware (req, res, next) {
+    const {userId, tareaId} = req.params;
+
+    req.params.user_id = userId? parseInt(userId) : null;
+    req.params.task_id = tareaId? parseInt(tareaId) : null;
+
+    next();
+} */
 
 function rutasUsuarios (app) {
 
@@ -17,7 +25,8 @@ function rutasUsuarios (app) {
 
     //queremos recibir un usuario con sus tareas
    app.get("/users/:user_id", (req, res) => {
-    const usuarioId = req.params.user_id
+    const usuarioId = parseInt(req.params.user_id) //en posgre añadimos parseInt por que en la bbdd relacional el id no es un string. 
+    //sin embargo esto lo podemos hacer con un middleware para que no tengamos que ir ruta por ruta (explicado arriba sesion 34 - min. 2:10.
 
     prisma.usuario.findUnique({
         where: {
@@ -34,8 +43,8 @@ function rutasUsuarios (app) {
 })
 
      app.post("/users/:user_id/tasks", (req, res) => {
-        const nuevaTarea = req.body.descripcion
-        const usuarioID = req.params.user_id
+        const nuevaTarea = req.body.descripcion;
+        const usuarioID = parseInt(req.params.user_id);
 
         prisma.tarea.create ({
             data: {
@@ -55,7 +64,7 @@ function rutasUsuarios (app) {
     });
 
     app.put("/users/:user_id/tasks/:task_id", (req, res) => {
-        const modificarTarea = req.params.task_id;
+        const modificarTarea = parseInt(req.params.task_id);
         const descripcionTarea = req.body.descripcion //lo que recibimos en el body
 
         prisma.tarea.update({
@@ -73,7 +82,7 @@ function rutasUsuarios (app) {
     });
 
     app.delete("/users/:user_id/tasks/:task_id", (req, res) => {
-        const borrarTarea = req.params.task_id
+        const borrarTarea = parseInt(req.params.task_id);
         prisma.tarea.delete({
             where: {
             id: borrarTarea //id de la tarea
