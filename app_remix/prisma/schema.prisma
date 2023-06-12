@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" //si usamos mongodb debemos cambiar a "mongodb"
+  provider = "mongodb" //dependiendo la bbdd "mongodb"/"postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -23,22 +23,23 @@ datasource db {
 
 // ---------------------------- MODELO PARA MONGODB ----------------------------
 
-//model Tarea {
-//  id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
-//  descripcion String  
-//  usuario Usuario @relation(fields: [usuarioID], references: [id]) //a la tarea se le asocia un usuario y usamos el campo UsuarioID para un id particular para esa realción tarea-usuario, y lo realcionamos con el id del usuario
-//  usuarioID String @db.ObjectId //el atribudo ObjetoId (explicado arriba)
+model Tarea {
+ id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
+ descripcion String  
+ usuario Usuario @relation(fields: [usuarioID], references: [id]) //a la tarea se le asocia un usuario y usamos el campo UsuarioID para un id particular para esa realción tarea-usuario, y lo realcionamos con el id del usuario
+ usuarioID String @db.ObjectId //el atribudo ObjetoId (explicado arriba)
   //usuarioID es un foreignKey: este campo no existe en la base de datos, es el campo que hace la relación
-// }
+}
 
 
-//Creamos el modelo para Usuarios y lo relacionamos con las tareas.
-//1:N --> Un usuario podrá tener muchas tareas, pero una tarea solo podrá estar relacionada con un único usuario 
-//model Usuario {
-  //id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
-  //nombre String 
-  //tareas Tarea[] //el usuario tendrá un campo de tarea que recibirá muchas tareas[]
-//}
+// Creamos el modelo para Usuarios y lo relacionamos con las tareas.
+// 1:N --> Un usuario podrá tener muchas tareas, pero una tarea solo podrá estar relacionada con un único usuario 
+model Usuario {
+  id String @id @default(auto()) @map("_id") @db.ObjectId //nos genera un id automático
+  nombre String @unique
+  password String
+  tareas Tarea[] //el usuario tendrá un campo de tarea que recibirá muchas tareas[]
+}
 
 
 
@@ -47,16 +48,16 @@ datasource db {
 //realizamos las variaciones necesarias para trabajar en una bbdd ralacional
 
 
-model Tarea {
-  id Int @id @default(autoincrement()) //el id irá aumentando
-  descripcion String  
-  usuario Usuario @relation(fields: [usuarioID], references: [id]) 
-  usuarioID Int //en las bbdd relacionales el campo de la relacion pasa de ser un string a ser un numero (int)
-}
+// model Tarea {
+//   id Int @id @default(autoincrement()) //el id irá aumentando
+//   descripcion String  
+//   usuario Usuario @relation(fields: [usuarioID], references: [id]) 
+//   usuarioID Int //en las bbdd relacionales el campo de la relacion pasa de ser un string a ser un numero (int)
+// }
 
-model Usuario {
-  id Int @id @default(autoincrement()) 
-  nombre String @unique
-  password String
-  tareas Tarea[]
-}
+// model Usuario {
+//   id Int @id @default(autoincrement()) 
+//   nombre String @unique
+//   password String
+//   tareas Tarea[]
+// }

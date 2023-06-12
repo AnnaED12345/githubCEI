@@ -52,24 +52,27 @@ app.use(passport.initialize()); //middleware passport
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
+  console.log("passport.serializeUser", user);
   done(null, user.id);
 });
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser((id, done) => {
 // Aquí debes buscar al usuario por su id en tu base de datos
-  rutasUsuarios(id).then(user => done(null, user)).catch((error) => done(error));
+  rutasUsuarios(id)
+  .then(user => done(null, user))
+  .catch((error) => done(error));
 });
 
 
 passport.use( //middleware passport-local
-  new LocalStrategy(function (id, password, done) {
+  new LocalStrategy(function (nombre, password, done) {
   prisma.usuario
-  .findUnique({ where: { id } })
+  .findUnique({ where: { nombre } })
   .then((user) => {
-  if (!user) return done(null, false);
-  if (user.password !== password) return done(null, false);
+  if (!user || user.password !== password) return done(true); //devuelve un error si no hay usuario o si la contraseña no es correcta
   return done(null, user);
   })
-  .catch((err) => done(err));
+  .catch((err) => {
+    done(err)});
   })
   );
 
@@ -85,6 +88,11 @@ passport.use( //middleware passport-local
 
 app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
 /* app.use(express.static('public')); // */ //ya esta definido
+
+app.post("/login", passport.authenticate("local")
+//Aquí en el ejemplo redirigimos, en este caso, lo simplificamos para gestionar el error de autenticación desde el frontend enviando un mensaje simplemente sin redirigir al usuario a ninguna ruta externa
+); 
+
 
 /* rutasTareas(app); */
 rutasUsuarios(app);

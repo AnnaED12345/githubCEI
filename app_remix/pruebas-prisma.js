@@ -29,6 +29,8 @@ prisma.usuario.findMany({
     console.log(usuarios);
 })
 
+
+
 //Crear tarea para usuario
 /* prisma.tarea.create ({
     data: {
@@ -65,6 +67,14 @@ prisma.usuario.findMany({
 }).then(tarea => {
         console.log('Tarea eliminada', tarea);
     });  */
+
+
+//eliminar usuarios:
+/* prisma.usuario.deleteMany({
+}).then(user => {
+        console.log(user);
+    }); 
+ */
 
 
 //actualizar tarea de usuario : /users/:user_id/tasks/:tasks_id
