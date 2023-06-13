@@ -10,7 +10,16 @@ const prisma = new PrismaClient();
     next();
 } */
 
-function rutasUsuarios (app, id) {
+//middleware de autenticación
+function authorized(req, res, next) {
+    if (!res.user || req.user.id !== req.params.userId) { //si no coincide el usuario, y su id no es igual a variable en ruta
+    res.status(403).send("Unauthorized");//respondemos con un 403 - no autorizado
+    return;
+    }
+    next();
+    }
+
+function rutasUsuarios (app) {
 
     //Queremos recibir todos los usuarios en ruta /users:
     app.get("/users", (req, res) => {
@@ -31,7 +40,7 @@ function rutasUsuarios (app, id) {
     });
 
     //queremos recibir un usuario con sus tareas
-   app.get("/users/:user_id", (req, res) => {
+   app.get("/users/:user_id", authorized, (req, res) => {
     const usuarioId = req.params.user_id//parseInt(req.params.user_id) //en posgre añadimos parseInt por que en la bbdd relacional el id no es un string. 
     //sin embargo esto lo podemos hacer con un middleware para que no tengamos que ir ruta por ruta (explicado arriba sesion 34 - min. 2:10.
 
@@ -49,7 +58,7 @@ function rutasUsuarios (app, id) {
     } )
 })
 
-     app.post("/users/:user_id/tasks", (req, res) => {
+     app.post("/users/:user_id/tasks", authorized, (req, res) => {
         const nuevaTarea = req.body.descripcion;
         const usuarioID = req.params.user_id;
 
@@ -71,7 +80,7 @@ function rutasUsuarios (app, id) {
     });
 
 
-    app.put("/users/:user_id/tasks/:task_id", (req, res) => {
+    app.put("/users/:user_id/tasks/:task_id", authorized, (req, res) => {
         const modificarTarea = req.params.task_id;
         const descripcionTarea = req.body.descripcion //lo que recibimos en el body
 
@@ -89,7 +98,7 @@ function rutasUsuarios (app, id) {
         })
     });
 
-    app.delete("/users/:user_id/tasks/:task_id", (req, res) => {
+    app.delete("/users/:user_id/tasks/:task_id", authorized, (req, res) => {
         const borrarTarea = req.params.task_id;
         prisma.tarea.delete({
             where: {

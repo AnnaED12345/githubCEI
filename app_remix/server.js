@@ -13,6 +13,9 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
 //también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
 
 installGlobals();
@@ -38,6 +41,9 @@ app.use(express.static("public", { maxAge: "1h" }));
 
 app.use(morgan("tiny"));
 
+app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
+/* app.use(express.static('public')); // */ //ya esta definido
+
 app.use(cookieParser());//middleware cookies
 
 app.use(
@@ -52,27 +58,37 @@ app.use(passport.initialize()); //middleware passport
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  console.log("passport.serializeUser", user);
-  done(null, user.id);
+  console.log("#passport.serializeUser", user);
+  done(null, user.id); //a la función done le pasamos el id del usuario
 });
 passport.deserializeUser((id, done) => {
 // Aquí debes buscar al usuario por su id en tu base de datos
-  rutasUsuarios(id)
-  .then(user => done(null, user))
+  prisma.usuario.findUnique({ //utilizamos el método findUnique de Prisma para buscar el usuario por su id en la ddbb
+    where: {
+      id:id
+    }
+  })
+  .then((user) => {
+    console.log("#passport.deserializeUser", user);
+    done(null, user)}) //pasamos los datos del usuario a través de la función done. null --> para indicar que no hay error
+    //si se produce un error durante la deserialización, se captura en el bloque catch y se pasa como argumento a done(error) para indicar que ocurre
   .catch((error) => done(error));
 });
 
 
 passport.use( //middleware passport-local
   new LocalStrategy(function (nombre, password, done) {
-  prisma.usuario
-  .findUnique({ where: { nombre } })
-  .then((user) => {
-  if (!user || user.password !== password) return done(true); //devuelve un error si no hay usuario o si la contraseña no es correcta
-  return done(null, user);
-  })
-  .catch((err) => {
-    done(err)});
+    console.log("#LocalStrategy", nombre, password);
+      prisma.usuario
+      .findUnique({ where: { nombre } }) //buscamos en la bbdd el usuario utilizando el nombre de usuario proporcionado.
+      .then((user) => {
+        console.log("usuario", user);
+        if (!user || user.password !== password) return done(true); //si no coincide el usuario o la contraseña: 
+        return done(null, user);
+      })
+      .catch((err) => {
+        console.log("#LocalStartegy.catch err:", err);
+        done(err)});
   })
   );
 
@@ -86,12 +102,17 @@ passport.use( //middleware passport-local
 /* const bodyParser = require("body-parser"); */
 
 
-app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
-/* app.use(express.static('public')); // */ //ya esta definido
+//rutas /login /logout:
+//se utiliza el método passport.authenticate("local") para autenticar las credenciales del usuario
+app.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).send();//si es existosa se devuelve respuesta 200 ok. 
+  });
 
-app.post("/login", passport.authenticate("local")
-//Aquí en el ejemplo redirigimos, en este caso, lo simplificamos para gestionar el error de autenticación desde el frontend enviando un mensaje simplemente sin redirigir al usuario a ninguna ruta externa
-); 
+//se utiliza el método req.logout() proporcionado por Passport para cerrar la sesión del usuario.
+app.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/login"); //se redirige al usuario a la ruta deseada
+  });
 
 
 /* rutasTareas(app); */
