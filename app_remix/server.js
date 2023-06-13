@@ -69,9 +69,10 @@ passport.deserializeUser((id, done) => {
     })
     .then((user) => { 
       console.log("passport.deserializeUser", user);
-      done(null, user); //pasamos los datos del usuario a través de la función done. El primer null es para que, en caso de que haya error sea null
+      done(null, user); //pasamos los datos del usuario a través de la función done. null --> para indicar que no hay error 
     })
-    .catch((error) => {
+    //Si se produce un error durante la deserialización, se captura en el bloque catch y se pasa como argumento a done(error) para indicar que ocurrió un error.
+    .catch((error) => { 
       done(error);
     });
 });
@@ -80,10 +81,10 @@ passport.deserializeUser((id, done) => {
 
 passport.use( //middleware passport-local
   new LocalStrategy(function (nombre, password, done) {
-  prisma.usuario
-  .findUnique({ where: { nombre } })
+  prisma.usuario.findUnique(
+    { where: { nombre } }) //buscamos en la bbdd al usuario utilizando el nombre de usuario proporcionado:
   .then((user) => {
-  if (!user || user.password !== password) return done(true); //devuelve un error si no hay usuario o si la contraseña no es correcta
+  if (!user || user.password !== password) return done(true); //si no coincide el usuario o la contraseña: 
   return done(null, user);
   })
   .catch((err) => {
