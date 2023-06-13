@@ -13,6 +13,9 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
 //también podemos introducir el backend desde otro fichero con import: ver inicio de la sesion 25
 
 installGlobals();
@@ -55,12 +58,24 @@ passport.serializeUser((user, done) => {
   console.log("passport.serializeUser", user);
   done(null, user.id);
 });
+
+
 passport.deserializeUser((id, done) => {
-// Aquí debes buscar al usuario por su id en tu base de datos
-  rutasUsuarios(id)
-  .then(user => done(null, user))
-  .catch((error) => done(error));
+  // Aquí debes buscar al usuario por su id en tu base de datos:
+  prisma.usuario.findUnique({ //utilizamos el método findUnique de Prisma para buscar al usuario por su ID en la base de datos
+      where: {
+        id: id,
+      },
+    })
+    .then((user) => { 
+      console.log("passport.deserializeUser", user);
+      done(null, user); //pasamos los datos del usuario a través de la función done. El primer null es para que, en caso de que haya error sea null
+    })
+    .catch((error) => {
+      done(error);
+    });
 });
+
 
 
 passport.use( //middleware passport-local
