@@ -12,8 +12,9 @@ const prisma = new PrismaClient();
 
 //middleware de autenticación
 function authorized(req, res, next) {
-    if (!res.user || req.user.id !== req.params.userId) { //si no coincide el usuario, y su id no es igual a variable en ruta
-    res.status(403).send("Unauthorized");//respondemos con un 403 - no autorizado
+    if (!req.user || req.user.id !== req.params.user_id) { //si no coincide el usuario, y su id no es igual a variable en ruta
+        console.log("#Authorized", req.user, req.user.id, req.params);
+        res.status(403).send("Unauthorized");//respondemos con un 403 - no autorizado
     return;
     }
     next();

@@ -5,12 +5,12 @@ export default function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    console.log(username, password)
+    console.log(username, password);
 
     async function submitLogin (event) { //cuando se haga un submit // el usuario haga login:
         event.preventDefault();
 
-        const post = await fetch(`/login`, { //realizamos un fetch a la ruta /login 
+        const response = await fetch(`/login`, { //realizamos un fetch a la ruta /login 
             method: "POST",
             body: JSON.stringify(
                 { username: username,
@@ -19,36 +19,42 @@ export default function Login () {
               "Content-Type": "application/json",
             }
         })
+        if (response.ok) {
+            const resJson = await response.json()
+            window.location.href = `/app_tareas/${resJson.id}`;
+        } else {
+            const error = await post.text(); //gestionamos el error
+            setError(error);
+        }
     }
 
     return (
         <div>
-            <div>
-            <form /* onSubmit={submitLogin} */>
-            <label htmlFor="username">Usuario:</label>
-            <input 
-                className="texto" 
-                type="text" 
-                name="username"
-                required
-                onChange={(event) => setUsername(event.target.value)} /> 
-            </form>
-            </div>
-            
-            <div>
-            <form>
-            <label htmlFor="password">Contraseña:</label>
+                <form onSubmit={submitLogin}>
+                <div>
+                    <label htmlFor="username">Usuario:</label>
+                <input 
+                    className="texto" 
+                    type="text" 
+                    name="username"
+                    required
+                    onChange={(event) => setUsername(event.target.value)} /> 
+                </div>
+
+                <div>
+                <label htmlFor="password">Contraseña:</label>
                 <input 
                     className="texto" 
                     type="password" 
                     name="password"
                     required
                     onChange={(event) => setPassword(event.target.value)} /> 
-            </form>
-            <div>
-                <button onSubmit={submitLogin} >Login</button>
-            </div>
-            </div>
+                </div>
+
+                <div>
+                    <button>Login</button>
+                </div>
+                </form>
         </div>
     )
 }

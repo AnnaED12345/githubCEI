@@ -69,7 +69,7 @@ passport.deserializeUser((id, done) => {
     }
   })
   .then((user) => {
-    console.log("#passport.deserializeUser", user);
+    /* console.log("#passport.deserializeUser", user); */
     done(null, user)}) //pasamos los datos del usuario a través de la función done. null --> para indicar que no hay error
     //si se produce un error durante la deserialización, se captura en el bloque catch y se pasa como argumento a done(error) para indicar que ocurre
   .catch((error) => done(error));
@@ -105,13 +105,19 @@ passport.use( //middleware passport-local
 //rutas /login /logout:
 //se utiliza el método passport.authenticate("local") para autenticar las credenciales del usuario
 app.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).send();//si es existosa se devuelve respuesta 200 ok. 
+  res.status(200).send({id: req.user.id});//si es existosa se devuelve respuesta 200 ok.
   });
 
 //se utiliza el método req.logout() proporcionado por Passport para cerrar la sesión del usuario.
 app.get("/logout", function (req, res) {
-  req.logout();
-  res.redirect("/login"); //se redirige al usuario a la ruta deseada
+  //destroy: 
+  req.session.destroy((err) => {//si el cierre de sesion da error
+    if (err) { //send 400.
+      res.status(400).send();
+    } else { //si el cierre de sesión es correcto
+      res.redirect("/app_tareas/login"); //se redirige al usuario a la ruta deseada
+    }
+  })
   });
 
 

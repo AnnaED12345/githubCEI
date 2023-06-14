@@ -1,6 +1,37 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
+const bcrypt = require('bcrypt');
+
+
+//código para encriptar la contraseña: 
+async function crearUsuarios (password) {
+    //1. Definimos el salt
+    //salt: cadena de caracteres aleatorios que se añade a la contraseña antes de hacer el hash.
+    const salt = await bcrypt.genSalt(10); //importamos modulo bcrypt
+    console.log("#SALT", salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log("#PASSWORD", password, "#HASH", hashedPassword);
+}
+
+crearUsuarios("123");
+
+    /* prisma.usuario.createMany ({
+        data:[ 
+            { nombre: "Lucas",
+            password: "12345" },
+    
+            { nombre: "María",
+            password: "12345"},
+    
+            { nombre: "Juan",
+            password: "12345"}
+        ]
+        
+            }). then(usuario => {
+            console.log(usuario);
+        })  */
+
 
 
 //crear usuario
@@ -21,13 +52,13 @@ const prisma = new PrismaClient()
     })  */
 
 //ruta /users para ver todos los usuarios
-prisma.usuario.findMany({
+/* prisma.usuario.findMany({
     include: {
         tareas:false,
         }
     }).then(usuarios => {
     console.log(usuarios);
-})
+}) */
 
 
 
