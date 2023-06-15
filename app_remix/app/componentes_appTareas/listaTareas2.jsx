@@ -74,11 +74,10 @@ const [tareaActualizada, setTareaActualizada] = useState(" ")//Guardamos la nuev
               cargarTareas();
               
             const editarDialogo = document.getElementById("editar_dialogo");
-            editarDialogo.close();
-              
+            editarDialogo.close();   
       
           } else {
-              console.log("Error: Tienes que añadir una tarea");
+              console.log(error);
           }
       })
       

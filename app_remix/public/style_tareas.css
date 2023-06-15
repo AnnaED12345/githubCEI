@@ -184,3 +184,9 @@ input#btnOk {
 div#selecciona-usuario {
     margin-left: 20%;
 }
+
+div#caja-login {
+    background-color: #fbaa7b;
+    border-radius: 30px;
+}
+

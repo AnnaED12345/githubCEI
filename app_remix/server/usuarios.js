@@ -63,6 +63,11 @@ function rutasUsuarios (app) {
         const nuevaTarea = req.body.descripcion;
         const usuarioID = req.params.user_id;
 
+        if (req.body.descripcion === "") {
+            res.status(400).send("Tienes que añadir una tarea")
+            return;
+        }
+
         prisma.tarea.create ({
             data: {
                 descripcion: nuevaTarea,
@@ -73,8 +78,9 @@ function rutasUsuarios (app) {
                     }
               },
             }
-                }).then(nuevaTarea => {
-                res.status(201).send(nuevaTarea);
+                }).then(nuevaTarea => { 
+                        res.status(201).send(nuevaTarea);
+                    
             }).catch(error => {
                 res.status(400).send(error)
             } )

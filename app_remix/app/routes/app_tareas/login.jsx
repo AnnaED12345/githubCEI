@@ -26,9 +26,9 @@ export default function Login () {
     }
 
     return (
-        <div>
+            <div id="caja-login">
                 <form onSubmit={submitLogin}>
-                <div>
+                <div id="caja-username">
                     <label htmlFor="username">Usuario:</label>
                 <input 
                     className="texto" 
@@ -38,7 +38,7 @@ export default function Login () {
                     onChange={(event) => setUsername(event.target.value)} /> 
                 </div>
 
-                <div>
+                <div id="caja-password">
                 <label htmlFor="password">Contraseña:</label>
                 <input 
                     className="texto" 
@@ -56,6 +56,6 @@ export default function Login () {
                     <button>Login</button>
                 </div>
                 </form>
-        </div>
+            </div>
     )
 }
