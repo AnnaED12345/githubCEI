@@ -19,13 +19,10 @@ export default function Login () {
               "Content-Type": "application/json",
             }
         })
-        if (response.ok) {
-            const resJson = await response.json()
-            window.location.href = `/app_tareas/${resJson.id}`;
-        } else {
-            const error = await response.text(); //gestionamos el error
-            setError(error);
-        }
+        if (response.ok) { //si la respuesta es ok
+            const user = await response.json()
+            window.location.href = `/app_tareas/${user.id}`; //enviamos al usuario a su app de tareas
+        } else setError("Usuario o contraseña incorrectos."); //si es incorrecta gestionamos el error
     }
 
     return (
@@ -49,6 +46,10 @@ export default function Login () {
                     name="password"
                     required
                     onChange={(event) => setPassword(event.target.value)} /> 
+
+                    <p id="errores" style={{ color: "red" }}>
+                        {error}
+                    </p>
                 </div>
 
                 <div>

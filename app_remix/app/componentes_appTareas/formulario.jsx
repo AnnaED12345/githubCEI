@@ -17,9 +17,10 @@ export default function Formulario ({cargarTareas, user_id}) {
             }})
 
             if (post.ok) { 
-                cargarTareas();
                 setTareaCreada("");
-                /* console.log(tareaCreada); */
+                cargarTareas();
+                
+                console.log(tareaCreada);
                 
               } else { 
 

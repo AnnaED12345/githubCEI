@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser'); //modulo para el middleware de co
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const bcrypt = require('bcrypt');
 
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
@@ -91,9 +92,9 @@ passport.use( //middleware passport-local
   
     .then((user) => {
       const valid = bcrypt.compare(password, user.password).then((valid) => {
-      if (!user || !valid) return done(true); //si no coincide el usuario o la no es válida: 
+      if (!user || !valid) return done(true); //si no coincide el usuario o la contraseña no es válida: 
       return done(null, user);
-    });//con bcrypt.compare, comparamos las contraseñas para validar si coinciden
+    });//con bcrypt.compare, comparamos las contraseñas para validar si coinciden --> devuelve una promesa
   })
   .catch((err) => {
     done(err)});
@@ -113,7 +114,8 @@ passport.use( //middleware passport-local
 //rutas /login /logout:
 //se utiliza el método passport.authenticate("local") para autenticar las credenciales del usuario
 app.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).send({id: req.user.id});//si es existosa se devuelve respuesta 200 ok.
+  res.status(200).send({id: req.user.id})
+  //si es existosa se devuelve respuesta 200 ok.
   });
 
 //se utiliza el método req.logout() proporcionado por Passport para cerrar la sesión del usuario.

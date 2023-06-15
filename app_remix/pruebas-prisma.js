@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 const bcrypt = require('bcrypt');
 
 
-// //código para encriptar la contraseña: 
+//código para encriptar la contraseña: 
 // async function crearUsuarios (nombre, password) {
 //     //1. Definimos el salt
 //     //salt: cadena de caracteres aleatorios que se añade a la contraseña antes de hacer el hash.
