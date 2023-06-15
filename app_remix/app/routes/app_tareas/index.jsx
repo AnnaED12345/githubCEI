@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { LangContext, useLangCookie } from "../../hooks/useLangCookie";//importamos el custom hook
+import "../../../public/style_tareas.css";
 
 export default function SeleccionaUsuario () {
 
@@ -19,8 +20,8 @@ export default function SeleccionaUsuario () {
     return (
         <div>
             <h1>{lang ==="es"? 'Selecciona tu usuario' : 'Select your user'}</h1>
-           { usuarios.map(usuario => 
-            <div>
+            {usuarios.map(usuario => 
+            <div id="selecciona-usuario">
             <Link to={`/app_tareas/${usuario.id}`}>{usuario.nombre}</Link>
             </div>)}
         </div>

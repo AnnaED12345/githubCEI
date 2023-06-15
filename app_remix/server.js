@@ -41,6 +41,9 @@ app.use(express.static("public", { maxAge: "1h" }));
 
 app.use(morgan("tiny"));
 
+app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
+/* app.use(express.static('public')); // */ //ya esta definido
+
 app.use(cookieParser());//middleware cookies
 
 app.use(
@@ -55,8 +58,8 @@ app.use(passport.initialize()); //middleware passport
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  console.log("passport.serializeUser", user);
-  done(null, user.id);
+  console.log("#passport.serializeUser", user);
+  done(null, user.id); //a la función done le pasamos el id del usuario
 });
 
 
@@ -75,7 +78,8 @@ passport.deserializeUser((id, done) => {
     .catch((error) => { 
       done(error);
     });
-});
+  });
+
 
 
 
@@ -90,7 +94,7 @@ passport.use( //middleware passport-local
   .catch((err) => {
     done(err)});
   })
-  );
+);
 
 
 // ---------------------- SERVIDOR TAREAS -----------------------------
@@ -102,12 +106,23 @@ passport.use( //middleware passport-local
 /* const bodyParser = require("body-parser"); */
 
 
-app.use(bodyParser.json()); //middleware que pasa el body a req.body --> en req.body se recoge la información que envia el usuario
-/* app.use(express.static('public')); // */ //ya esta definido
+//rutas /login /logout:
+//se utiliza el método passport.authenticate("local") para autenticar las credenciales del usuario
+app.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).send({id: req.user.id});//si es existosa se devuelve respuesta 200 ok.
+  });
 
-app.post("/login", passport.authenticate("local")
-//Aquí en el ejemplo redirigimos, en este caso, lo simplificamos para gestionar el error de autenticación desde el frontend enviando un mensaje simplemente sin redirigir al usuario a ninguna ruta externa
-); 
+//se utiliza el método req.logout() proporcionado por Passport para cerrar la sesión del usuario.
+app.get("/logout", function (req, res) {
+  //destroy: 
+  req.session.destroy((err) => {//si el cierre de sesion da error
+    if (err) { //send 400.
+      res.status(400).send();
+    } else { //si el cierre de sesión es correcto
+      res.redirect("/app_tareas/login"); //se redirige al usuario a la ruta deseada
+    }
+  })
+  });
 
 
 /* rutasTareas(app); */

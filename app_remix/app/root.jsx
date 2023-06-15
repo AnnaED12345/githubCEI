@@ -30,11 +30,13 @@ export default function App() {
       </head>
       <body>
       <LangContext.Provider value={lang}>
+
       <select 
       onInput={(event) => setLang(event.target.value)}>
           <option value="es">{lang === "es"? 'Español' : 'Spanish'}</option>
           <option value="en">{lang === "en"? 'English' : 'Inglés'}</option>
         </select>
+
         <Outlet />
         <ScrollRestoration />
         <Scripts />

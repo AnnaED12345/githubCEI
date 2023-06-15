@@ -180,3 +180,7 @@ input#btnOk {
     margin-right: 30px;
     color:green;
 }
+
+div#selecciona-usuario {
+    margin-left: 20%;
+}
