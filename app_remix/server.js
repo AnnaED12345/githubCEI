@@ -85,11 +85,15 @@ passport.deserializeUser((id, done) => {
 
 passport.use( //middleware passport-local
   new LocalStrategy(function (nombre, password, done) {
-  prisma.usuario.findUnique(
-    { where: { nombre } }) //buscamos en la bbdd al usuario utilizando el nombre de usuario proporcionado:
-  .then((user) => {
-  if (!user || user.password !== password) return done(true); //si no coincide el usuario o la contraseña: 
-  return done(null, user);
+  prisma.usuario
+    .findUnique(
+      { where: { nombre } }) //buscamos en la bbdd al usuario utilizando el nombre de usuario proporcionado:
+  
+    .then((user) => {
+      const valid = bcrypt.compare(password, user.password).then((valid) => {
+      if (!user || !valid) return done(true); //si no coincide el usuario o la no es válida: 
+      return done(null, user);
+    });//con bcrypt.compare, comparamos las contraseñas para validar si coinciden
   })
   .catch((err) => {
     done(err)});

@@ -23,7 +23,7 @@ export default function Login () {
             const resJson = await response.json()
             window.location.href = `/app_tareas/${resJson.id}`;
         } else {
-            const error = await post.text(); //gestionamos el error
+            const error = await response.text(); //gestionamos el error
             setError(error);
         }
     }

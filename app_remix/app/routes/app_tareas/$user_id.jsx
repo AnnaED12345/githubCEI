@@ -47,29 +47,26 @@ export default function AppTares () {
     async function submitLogout (event) { //cuando se haga un submit // el usuario haga login:
         event.preventDefault();
 
-        const response = await fetch(`/logout`, { //realizamos un fetch a la ruta /login 
-            method: "POST",
-            body: JSON.stringify(
-                { username: username,
-                  password : password}), //body: aquí introducimos los datos que el usuario inserta
-            headers: {
-              "Content-Type": "application/json",
-            }
-        })
+        const response = await fetch(`/logout`)
         if (response.ok) {
-            
+            window.location.href = "/app_tareas/login";
+        } else {
+            console.error("Error en el logout");
         }
     }
 
 
     return (
         <div>
-            <button id="btnLogout" onSubmit={submitLogout}>Logout</button>
-
-            { usuario ? <h1>Bienvenido {usuario.nombre} </h1> : <h1>Cargando...</h1>}
+            { usuario ? 
+            <div>
+            <button id="btnLogout" onClick={submitLogout}>Logout</button>
+    
+            <h1>Bienvenido {usuario.nombre} </h1> 
             <Formulario cargarTareas={cargarTareas} user_id={user_id}/> {/*pasamos la función con las props*/}
             <ListaTareas2 tareas = {listaTareas} cargarTareas={cargarTareas} /> {/* trabajamos la creación de elementos li en ListaTareasss */}
-
+            </div>
+            : <h1>Cargando...</h1>}
         </div>
     )
 }
