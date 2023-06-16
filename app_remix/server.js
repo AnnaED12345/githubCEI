@@ -13,6 +13,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
+const phpExpress = require('php-express');
 
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
@@ -101,6 +102,12 @@ passport.use( //middleware passport-local
   })
 );
 
+
+app.set('views', './views');
+
+app.engine('php', phpExpress.engine);
+app.set('view engine', 'php');
+app.all(/\.php$/, phpExpress.router);
 
 // ---------------------- SERVIDOR TAREAS -----------------------------
 

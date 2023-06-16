@@ -1,0 +1,31 @@
+1. Crea tres variables: name, age y is_student y asígnales un valor de tu elección. Luego, utiliza echo
+para imprimir el valor de cada variable.
+
+<?php
+$name = "Lucas"; 
+$age = 23; 
+$is_student = false; 
+?>
+
+<?php
+echo $name . " " . $age . " "  ;
+echo $is_student ? "true" : "false";
+?>
+
+
+
+2. Crea un array que contenga el nombre de tres ciudades. Luego, usa un bucle for para imprimir cada
+ciudad.
+
+<?php
+$ciudades = array("Madrid", "Valencia", "Barcelona");
+
+foreach ($ciudades as $key => $ciudad) {
+    echo "$ciudad ";
+}
+?> 
+
+
+
+3. 
+
