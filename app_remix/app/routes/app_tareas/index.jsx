@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { LangContext, useLangCookie } from "../../hooks/useLangCookie";//importamos el custom hook
-import "../../../public/style_tareas.css";
+
 
 export default function SeleccionaUsuario () {
 

@@ -14,8 +14,8 @@ import { LangContext, useLangCookie } from "./hooks/useLangCookie";
 import { useContext } from "react";
 
 export const links = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  /* { rel: "stylesheet", href: styles }, */ // (tailwindcss)
+  /* ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []), */
+  { rel: "stylesheet", href: styles }, // (tailwindcss)
  ];
 
 
