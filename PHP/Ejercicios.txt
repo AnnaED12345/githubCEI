@@ -27,5 +27,65 @@ foreach ($ciudades as $key => $ciudad) {
 
 
 
-3. 
+3. Dado el precio de un producto y la cantidad de dinero que tiene un usuario, escribe un script que
+determine si el usuario puede comprar el producto, y si puede, cuánto dinero le quedará después de
+la compra.
+
+<?php
+$precioProducto = 200;
+$dineroUsuario = 100; 
+
+if ($dineroUsuario >= $precioProducto) {
+	
+    $dineroRestante = $dineroUsuario - $precioProducto;
+    echo  " Saldo actual: " . $dineroRestante . "";
+} else {
+    echo "No hay suficiente saldo";
+}
+?> 
+
+
+4. Crea un script que imprima los números del 1 al 10 usando cada uno de los tres tipos de bucles (for,
+while, foreach).
+
+//bucle for
+<?php
+for ($i = 1; $i < 11; $i++) {
+echo $i . "\n";
+}
+?> 
+
+
+//bucle while
+<?php
+$index = 1;
+
+while ($index < 11) {
+echo $index . "\n";
+$index++;
+}
+?> 
+
+
+//bucle forEach
+<?php
+$numeros = array (1, 2, 3 , 4, 5, 6, 7, 8, 9, 10);
+
+foreach ($numeros as $numero) {
+echo $numero . "\n";
+}
+?> 
+
+
+5. Escribe una función llamada add que tome dos números como argumentos y devuelva su suma.
+Luego, prueba la función con varios pares de números.
+
+<?php
+function add($a, $b) {
+	$suma = $a + $b;
+	echo $suma;
+}
+
+add(5, 5);
+?>
 
