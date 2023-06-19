@@ -50,6 +50,12 @@ test ("devuelve recuento incorrecto", () => {
     expect(count).not.toBe(7);
 })
 
+test("devuelve el recuento correcto para una cadena contando con espacios en blanco", () => {
+    const count = countChars("Hola mundo");
+    expect(count).toBe(10);
+  });
+
+
 
 // Crea una prueba para verificar que la función sortNumbers devuelve el array de números ordenado
 // correctamente.
@@ -65,9 +71,18 @@ test ("Devuelve el array de numero ordenador incorrectamente", () => {
 })
 
 test ("No recibe un array", () => {
-    const count = sortNumbers(3, 2, 1, 4, 5);
-
+    expect(() => sortNumbers(3, 2, 1, 4, 5)).toThrow();
 })
+
+test("Devuelve un array vacío", () => {
+    const sorted = sortNumbers([]);
+    expect(sorted).toEqual([]);
+  });
+
+test("Devuelve el array ordenado correctamente con números negativos", () => {
+    const sorted = sortNumbers([10, -5, 3, -1, 0]);
+    expect(sorted).toEqual([-5, -1, 0, 3, 10]);
+});
 
 // Crea una prueba para asegurarte de que la función validatePassword devuelve true cuando se le pasa
 // una contraseña segura y false cuando se le pasa una que no lo es.
@@ -97,3 +112,14 @@ test ("Contraseña no segura. Debe contener al menos 8 carácteres", () => {
     expect(count).toBeFalsy();
 })
 
+test("Contraseña no segura. No contiene minúsculas", () => {
+    const isValid = validatePassword("CONTRASEÑA123");
+    expect(isValid).toBeFalsy();
+  });
+
+
+  test("Contraseña no segura. Contiene espacios en blanco", () => {
+    const isValid = validatePassword("Contraseña 123");
+    expect(isValid).toBeFalsy();
+  });
+  
