@@ -17,7 +17,7 @@ correctamente la respuesta. */
 
 function sendRequest(url) {
 try {
-const response = axios.get(url);
+const response = axios.get(url); 
 return response.data;
 } catch (error) {
 console.error("Error:", error);
