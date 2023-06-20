@@ -36,19 +36,22 @@ test ("Petición GET a la url que especificamos como parámentro", () => {
 })
 
 
-test ("Petición GET a la url que especificamos como parámentro", () => {
+test ("devuelve data de la respuesta", () => {
+    const data = "respuesta de ejemplo";
     axios.get = jest.fn();
     axios.get.mockReturnValue({
-        data: "respuesta de ejemplo"
+        data 
     });
 
     const result = sendRequest("https://example.com/test");
 
-    expect(result).toEqual(data)
+    expect(result).toEqual(data);
 })
 
 
 test ("devuelve null", () => {
+    axios.get = jest.fn();
     const result = sendRequest();
     expect(result).toEqual(null);
 });
+
