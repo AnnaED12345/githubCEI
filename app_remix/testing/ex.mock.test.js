@@ -1,17 +1,13 @@
-const { getRandomNumber } = require("./ex.mock")
+const { default: axios } = require("axios");
+const { getRandomNumber, sendRequest } = require("./ex.mock")
 
-test ("Mock-fn Random Number 0", () => {
-    Math.random = jest.fn();
+//Ejercicio 1
+
+test ("Random Number 0 return 1", () => {
+    Math.random = jest.fn(); //le asignamos una función simulada --> jest.fn sería lo mismo que Math.random = () => {}
     Math.random.mockReturnValue(0)
 
     expect(getRandomNumber()).toBe(1);
-})
-
-test ("Mock-fn Random Number 1", () => {
-    Math.random = jest.fn();
-    Math.random.mockReturnValue(1)
-
-    expect(getRandomNumber()).toBe(101);
 })
 
 test ("Mock-fn Random Number 0.5", () => {
@@ -21,10 +17,22 @@ test ("Mock-fn Random Number 0.5", () => {
     expect(getRandomNumber()).toBe(51);
 })
 
-test ("Mock-fn Random Number 0.22", () => {
+test ("Mock-fn Random Number 0.9999 return 100", () => {
     Math.random = jest.fn();
-    Math.random.mockReturnValue(0.22)
+    Math.random.mockReturnValue(0.9999)
 
-    expect(getRandomNumber()).toBe(23);
+    expect(getRandomNumber()).toBe(100);
 })
+
+
+//Ejercicio 2
+
+test ("Petición GET a la url que especificamos como parámentro", () => {
+    axios.get = jest.fn();
+    sendRequest("https://example.com/test");
+
+    /* expect(axios.get).toHaveBeenCalled(); */
+    expect(axios.get).toHaveBeenCalledWith("https://example.com/test");
+})
+
 
