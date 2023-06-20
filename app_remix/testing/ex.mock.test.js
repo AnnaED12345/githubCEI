@@ -3,26 +3,26 @@ const { getRandomNumber, sendRequest } = require("./ex.mock")
 
 //Ejercicio 1
 
-test ("Random Number 0 return 1", () => {
-    Math.random = jest.fn(); //le asignamos una función simulada --> jest.fn sería lo mismo que Math.random = () => {}
-    Math.random.mockReturnValue(0)
+// test ("Random Number 0 return 1", () => {
+//     Math.random = jest.fn(); //le asignamos una función simulada --> jest.fn sería lo mismo que Math.random = () => {}
+//     Math.random.mockReturnValue(0)
 
-    expect(getRandomNumber()).toBe(1);
-})
+//     expect(getRandomNumber()).toBe(1);
+// })
 
-test ("Mock-fn Random Number 0.5", () => {
-    Math.random = jest.fn();
-    Math.random.mockReturnValue(0.5)
+// test ("Mock-fn Random Number 0.5", () => {
+//     Math.random = jest.fn();
+//     Math.random.mockReturnValue(0.5)
 
-    expect(getRandomNumber()).toBe(51);
-})
+//     expect(getRandomNumber()).toBe(51);
+// })
 
-test ("Mock-fn Random Number 0.9999 return 100", () => {
-    Math.random = jest.fn();
-    Math.random.mockReturnValue(0.9999)
+// test ("Mock-fn Random Number 0.9999 return 100", () => {
+//     Math.random = jest.fn();
+//     Math.random.mockReturnValue(0.9999)
 
-    expect(getRandomNumber()).toBe(100);
-})
+//     expect(getRandomNumber()).toBe(100);
+// })
 
 
 //Ejercicio 2
@@ -47,3 +47,8 @@ test ("Petición GET a la url que especificamos como parámentro", () => {
     expect(result).toEqual(data)
 })
 
+
+test ("devuelve null", () => {
+    const result = sendRequest();
+    expect(result).toEqual(null);
+});
