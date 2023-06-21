@@ -3,9 +3,8 @@ const rutasUsuarios = require("./usuarios");
 /* rutasUsuarios(app) */
 
 test ("petición POST correcta a la URL específicada", () => {
-    app.post = jest.fn();
-    app.post();
+    const app = {post: jest.fn()}
 
-    expect(axios.get).toHaveBeenCalledWith("/users/:user_id/tasks", expect.anything());
+    expect(app.post).toHaveBeenCalledWith("/users/:user_id/tasks", expect.anything());
 })
 
