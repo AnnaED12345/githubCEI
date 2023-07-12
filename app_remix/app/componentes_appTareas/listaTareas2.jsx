@@ -7,6 +7,43 @@ let tareaId = null;
 
 export default function ListaTareas2 ({ tareas, cargarTareas}) { //creamos un componente Lista tareas que recibira como prop las tareas
    
+    //Opcion de hacerlo con useState: 
+
+   //     const [dialogoBorrarVisible, setdialogoBorrarVisible] = useState(false);
+//     const [dialogoEditarVisible, setdialogoEditarVisible] = useState(false);
+//     const [tareaId, setTareaId] = useState(null);
+
+
+//     const mostrarDialogoBorrar = (idTarea) => {
+//         setTareaId(idTarea);
+//         setdialogoBorrarVisible(true);
+//     }
+
+
+//     const onConfirmarBorrar = (() => {
+
+//         const options = {
+//             method: 'DELETE'
+//         }
+
+//         const borrar = fetch (`/users/${user_id}/tasks/${tareaId}`, options)
+//         .then((res) => {  
+//           if (res.ok) { 
+//             cargarTareas()
+//             const dialogoBorrar = document.getElementById("borrar_dialogo");
+//             dialogoBorrar.close();
+    
+//           } else {
+//               console.log ("No existe esta tarea");
+//           }
+//     })
+// });
+
+//     const onCancelarBorrar = () => {
+//         setdialogoBorrarVisible(false);
+//         setTareaId(null);
+//     }
+
     const mostrarDialogoBorrar = (idTarea) => {
         const dialogoBorrar = document.getElementById("borrar_dialogo");
         dialogoBorrar.showModal();

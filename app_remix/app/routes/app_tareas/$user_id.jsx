@@ -9,7 +9,7 @@ import { useParams } from "@remix-run/react";
 
 
 export default function AppTares () {
-    const {user_id} = useParams(); //sacamos la varible en ruta. Esto nos sirve para saber que usuario está seleccionado
+    const {user_id} = useParams();  //sacamos la varible en ruta. Esto nos sirve para saber que usuario está seleccionado
     const [usuario, setUsuario] = useState();
 
 

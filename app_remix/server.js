@@ -132,7 +132,7 @@ app.get("/logout", function (req, res) {
 
 
 /* rutasTareas(app); */
-rutasUsuarios(app);
+rutasUsuarrios(app);
 
 
 app.all(
